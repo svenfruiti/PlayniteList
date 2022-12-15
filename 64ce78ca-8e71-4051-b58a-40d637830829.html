@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Cycle: Frontier</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('64ce78ca-8e71-4051-b58a-40d637830829/a202b7d2-2e6c-46e0-a3ed-54daeb0d41cc.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="64ce78ca-8e71-4051-b58a-40d637830829/55234f2a-4923-463b-b4e7-21903369f36a.ico"/> The Cycle: Frontier</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="64ce78ca-8e71-4051-b58a-40d637830829/0b0b34fb-a343-487a-a17d-5687f993a7a1.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Spielzeit</TD>
+								<TD>Nicht gespielt</TD>
+							</TR>
+							<TR>
+								<TD>Letzte Aktivität</TD>
+								<TD><a href="#quicklink-Nie">Nie</a> </TD>
+							</TR>
+							<TR>
+								<TD>Hinzugefügt</TD>
+								<TD><a href="#quicklink-25.06.2022">25.06.2022</a> 13:12:26</TD>
+							</TR>
+							<TR>
+								<TD>Modifiziert</TD>
+								<TD><a href="#quicklink-12.12.2022">12.12.2022</a> 1:00:43</TD>
+							</TR>
+							<TR>
+								<TD>Fertigstellungsstatus</TD>
+								<TD><a href="default_completionstatus_aufsteigend_name_aufsteigend.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Bibliothek</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Quelle</TD>
+								<TD><a href="default_source_aufsteigend_name_aufsteigend.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plattform</TD>
+								<TD><a href="default_platform_aufsteigend_name_aufsteigend.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Veröffentlichungsdatum</TD>
+								<TD><a href="#quicklink-08.06.2022">08.06.2022</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Bewertungen</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_absteigend_name_aufsteigend.html#quicklink-64">64</a></TD>
+							</TR>
+							<TR>
+								<TD>Kritiker Punkte</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Benutzerwertung</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Free to Play">Free to Play</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Entwickler</TD>
+								<TD><a href="#quicklink-YAGER">YAGER</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Verleger</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-YAGER">YAGER</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Eigenschaft</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Co-op">Co-op</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-In App Käufe">In App Käufe</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Pvp">Pvp</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/868270" target="_blank">Communityhub</a><br/><a href="https://steamcommunity.com/app/868270/discussions/" target="_blank">Diskussionen</a><br/><a href="https://steamcommunity.com/app/868270/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=868270" target="_blank">Neuigkeiten</a><br/><a href="https://store.steampowered.com/app/868270" target="_blank">Shopseite</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=868270" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Adventure">Adventure</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Aliens">Aliens</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Battle Royale">Battle Royale</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Competitive">Competitive</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Crafting">Crafting</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Exploration">Exploration</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-First-Person">First-Person</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-FPS">FPS</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Loot">Loot</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Looter Shooter">Looter Shooter</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Online Co-Op">Online Co-Op</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-PvE">PvE</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-PvP">PvP</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Sci-fi">Sci-fi</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Shooter">Shooter</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Survival">Survival</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Tactical">Tactical</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Team-Based">Team-Based</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Beschreibung</H3>
+				</div>
+				<div class="description">
+					Welcome to Fortuna III, a forsaken world where the stakes are high and the rewards higher! <br><br>Drop down onto the surface and fill your pockets with treasures and resources. Be wary though, only those who make it out alive are allowed to keep their spoils. Keep an eye out for bloodthirsty beasts and greedy players – or set out to actively hunt those and steal their hard-earned prizes for yourself. <br><br>Secure a seat on the nearest evac ship to safeguard your loot. Upgrade your gear, purchase new equipment and complete faction-based contracts to increase your gains and unlock new combat options. Prospecting is a risky venture, but greed is sometimes rewarded by the promise of glory. After all, fortune favors the bold in the eye of the storm. <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/868270/extras/TCF_GIF_01.gif?t=1655896937" /><h2 class="bb_tag">GREATER RISKS YIELD GREATER REWARDS</h2><br>The life of a Prospector is full of danger, but any extra peril is sure to be worth it. You can go it alone or team up but be wary, the more valuable your haul the bigger the risk. Tread recklessly and risk attracting the attention of a pack of sneaky Striders or a monstrous Crusher. Cause too much noise fending off the wildlife and you may give away your position to another trigger-happy player. Remember, losers come home empty-handed, so watch your back. <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/868270/extras/TCF_GIF_02.gif?t=1655896937" /><h2 class="bb_tag">DROP DOWN AT A MOMENTS NOTICE</h2><br>Map instances stay open for several hours, so Prospectors can drop to the planets surface at any time as long as the storm is not raging. This means no waiting in a queue for other players – you just drop onto the surface and off you go. And while you're down there, be prepared for a constant ebb and flow of threats and opportunities, as others get taken out or evacuate, and are replaced by new arrivals!<h2 class="bb_tag">A WORLD OF TREACHEROUS BEAUTY</h2><br>Fortuna III is a lush, mysterious planet on the edge of the galaxy. Once prized for its natural resources, it was ravaged by the Cycle, a radioactive storm that quickly wiped-out civilization, leaving behind ghost settlements and forcing survivors to retreat to the orbiting station. The storm is still a threat and yet the surface is full of spoils and treasures. Will you hunker down to survive the stormy night or use this risky opportunity to look for rare materials? <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/868270/extras/TCF_GIF_03.gif?t=1655896937" /><h2 class="bb_tag">CALM ABOVE THE STORM</h2>Returning to the relative safety of Prospect Station will allow you to secure your spoils and turn in your completed contracts. Use your newfound resources to improve your personal quarters with permanent upgrades and purchase new equipment. Tune up your favorite weapons with a neat array of mods and gear up with the perfect tools for your next drop. This may not be a corner of paradise but it’s home. Your home.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

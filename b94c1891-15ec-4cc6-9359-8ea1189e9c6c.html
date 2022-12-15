@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>LIGHTNING RETURNS: FINAL FANTASY XIII</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('b94c1891-15ec-4cc6-9359-8ea1189e9c6c/ea94eb68-2bfe-4caf-b20a-a6e59c053761.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="b94c1891-15ec-4cc6-9359-8ea1189e9c6c/e0d45ff3-d90a-499b-af5e-ab7955969c5a.ico"/> LIGHTNING RETURNS: FINAL FANTASY XIII</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="b94c1891-15ec-4cc6-9359-8ea1189e9c6c/27b75459-bb71-4ed2-a2f0-8b6b0a01c071.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Spielzeit</TD>
+								<TD>Nicht gespielt</TD>
+							</TR>
+							<TR>
+								<TD>Letzte Aktivität</TD>
+								<TD><a href="#quicklink-Nie">Nie</a> </TD>
+							</TR>
+							<TR>
+								<TD>Hinzugefügt</TD>
+								<TD><a href="#quicklink-27.04.2022">27.04.2022</a> 23:20:04</TD>
+							</TR>
+							<TR>
+								<TD>Modifiziert</TD>
+								<TD><a href="#quicklink-10.11.2022">10.11.2022</a> 13:30:37</TD>
+							</TR>
+							<TR>
+								<TD>Fertigstellungsstatus</TD>
+								<TD><a href="default_completionstatus_aufsteigend_name_aufsteigend.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Bibliothek</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Quelle</TD>
+								<TD><a href="default_source_aufsteigend_name_aufsteigend.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plattform</TD>
+								<TD><a href="default_platform_aufsteigend_name_aufsteigend.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Veröffentlichungsdatum</TD>
+								<TD><a href="#quicklink-10.12.2015">10.12.2015</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Bewertungen</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_absteigend_name_aufsteigend.html#quicklink-77">77</a></TD>
+							</TR>
+							<TR>
+								<TD>Kritiker Punkte</TD>
+								<TD><a href="#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>Benutzerwertung</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-🐎 RPG">🐎 RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Entwickler</TD>
+								<TD><a href="#quicklink-Square Enix">Square Enix</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Verleger</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-Square Enix">Square Enix</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Eigenschaft</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Controller Support">Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Single Player">Single Player</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Steam Karten">Steam Karten</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/345350" target="_blank">Communityhub</a><br/><a href="https://steamcommunity.com/app/345350/discussions/" target="_blank">Diskussionen</a><br/><a href="https://steamcommunity.com/app/345350/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=345350" target="_blank">Neuigkeiten</a><br/><a href="https://store.steampowered.com/app/345350" target="_blank">Shopseite</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=345350" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/345350/achievements" target="_blank">Errungenschaften</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Beschreibung</H3>
+				</div>
+				<div class="description">
+					Lightning Returns is the concluding chapter of the Final Fantasy XIII saga and series heroine Lightning's final battle. The grand finale of the trilogy brings a world reborn as well as free character customization and stunning action based battles.<br><br>The world is sinking into a sea of chaos, and in thirteen days, nothing will remain.<br>Though the planet is doomed, there is still hope for those who call it home.<br>After centuries in crystal stasis, a hero has awoken—a legendary warrior on a god-given mission to save the souls of mankind. Her name: Lightning.<br>Blessed with incredible strength and an arsenal of new weapons, she has everything she needs for the coming battle. Everything except time. And now she must make an impossible choice...<h2 class="bb_tag">Downloadable content included in-game</h2><ul class="bb_ul"><li>&quot;Divine Wear&quot; schemata<br></li><li>&quot;Moogle Lover&quot; schemata<br></li><li>&quot;Ultimate Saviour&quot; schemata<br></li><li>&quot;FFX-2 Yuna&quot; schemata<br></li><li>&quot;FFVII Cloud&quot; schemata<br></li><li>&quot;FFX Yuna&quot; schemata<br></li><li>&quot;Tomb Raider&quot; schemata<br></li><li>&quot;Shining Prince&quot; schemata<br></li><li>&quot;Dark Samurai&quot; schemata<br></li><li>&quot;Sohei Savior&quot; schemata<br></li><li>&quot;Utsusemi&quot; schemata<br></li><li>&quot;Art of War&quot; schemata<br></li><li>&quot;Flower of Battle&quot; schemata<br></li><li>&quot;Shogun&quot; schemata</li></ul><br>The &quot;FFVII Aerith&quot; schemata is not included in this pack. Furthermore, there are no plans to make this schemata available in future.<h2 class="bb_tag">Key Features:</h2><br><strong>LIGHTNING UNDER YOUR CONTROL</strong><br>Lightning will be the playable character - with a highly evolved range of techniques for battles and exploring the environment. Customise Lightning with a large range of different outfits and weapons; that affect not only the way she looks, but also her actions and abilities.<br><br><strong>ACTION-ORIENTED COMBAT</strong><br>A new battle system gives a level of direct control over the action unlike any FINAL FANTASY game, while having iconic elements that are known and loved throughout the series too. <br><br><strong>DLC CONTENT FROM THE ORIGINAL CONSOLE VERSION</strong><br>The PC release will also include all the amazing DLC content from the original console version*, including Japanese voice-overs and various costumes, shields and weapons. <br>*Except for “FFVII Aerith Costume” <br><br><strong>A CONSTANTLY MOVING, BEAUTIFUL WORLD</strong><br>Stunning artistic direction depicts a doomed world filled with choice and diversity. Living, expansive environments featuring a rising and setting sun provide unique experiences for every player.<br><br><strong>USE YOUR TIME WELL</strong><br>A world on a course for total annihilation presents unique challenges; where certain areas, missions, and people will only be available during selected periods. How will you use your remaining time? <br><br><strong>A CONNECTED EXPERIENCE</strong><br>Stay connected to FINAL FANTASY and its characters, with unique features that link the in-game world to the real world.<br><br><strong>Notes:</strong><br><ul class="bb_ul"><li>This version of the game has had no changes or additions made to the story of the original LIGHTNING RETURNS FINAL FANTASY XIII.<br></li><li>Supports Dolby® Digital output compatible sound cards.<br></li><li>This version of the game includes some of the downloadable content released for the original.<br></li><li>The bonus items originally awarded for having save data from previous games in the series will be awarded in this version regardless of whether there is suitable save data present or not.<br></li><li>Includes no functionality linked to Square Enix Members or social networking sites.<br></li><li>It is not possible to change the names assigned to chocobos, map markers or schemata.<br><br><strong>Key functionality features of LR:FFXIII</strong><br>Supports graphics options intended for high-end PCs:<br>- Rendering resolution<br>- Scaling of the display area<br>- Shadow processing<br>- Texture filters<br>- Colour correction<br>- Depth of field<br>- Lighting<br>- Glare<br>Supports full screen and windowed display modes<br>Supports a maximum frame rate of 60fps<br>Supports Full HD display with a maximum resolution of 3840x2160</li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

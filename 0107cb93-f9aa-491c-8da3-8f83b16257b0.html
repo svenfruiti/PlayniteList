@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Crew 2</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('0107cb93-f9aa-491c-8da3-8f83b16257b0/7ddd8940-089c-4a76-9a7e-2652df271ddd.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="0107cb93-f9aa-491c-8da3-8f83b16257b0/99f89efd-7a74-4dc4-bd7c-d09e5834e732.ico"/> The Crew 2</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="0107cb93-f9aa-491c-8da3-8f83b16257b0/f0f47e85-34aa-4a40-90de-ec6ca4d685d8.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Spielzeit</TD>
+								<TD>Nicht gespielt</TD>
+							</TR>
+							<TR>
+								<TD>Letzte Aktivität</TD>
+								<TD><a href="#quicklink-Nie">Nie</a> </TD>
+							</TR>
+							<TR>
+								<TD>Hinzugefügt</TD>
+								<TD><a href="#quicklink-10.07.2021">10.07.2021</a> 0:11:42</TD>
+							</TR>
+							<TR>
+								<TD>Modifiziert</TD>
+								<TD><a href="#quicklink-10.11.2022">10.11.2022</a> 13:26:17</TD>
+							</TR>
+							<TR>
+								<TD>Fertigstellungsstatus</TD>
+								<TD><a href="default_completionstatus_aufsteigend_name_aufsteigend.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Bibliothek</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Quelle</TD>
+								<TD><a href="default_source_aufsteigend_name_aufsteigend.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plattform</TD>
+								<TD><a href="default_platform_aufsteigend_name_aufsteigend.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Veröffentlichungsdatum</TD>
+								<TD><a href="#quicklink-28.06.2018">28.06.2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Bewertungen</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_absteigend_name_aufsteigend.html#quicklink-79">79</a></TD>
+							</TR>
+							<TR>
+								<TD>Kritiker Punkte</TD>
+								<TD><a href="#quicklink-62">62</a></TD>
+							</TR>
+							<TR>
+								<TD>Benutzerwertung</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Racing">Racing</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Entwickler</TD>
+								<TD><a href="#quicklink-Ivory Tower">Ivory Tower</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Verleger</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-Ubisoft">Ubisoft</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Eigenschaft</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Controller Support">Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Co-op">Co-op</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-In App Käufe">In App Käufe</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Pvp">Pvp</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Remote Play">Remote Play</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/646910" target="_blank">Communityhub</a><br/><a href="https://steamcommunity.com/app/646910/discussions/" target="_blank">Diskussionen</a><br/><a href="https://steamcommunity.com/app/646910/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=646910" target="_blank">Neuigkeiten</a><br/><a href="https://store.steampowered.com/app/646910" target="_blank">Shopseite</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=646910" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Beschreibung</H3>
+				</div>
+				<div class="description">
+					<h1>FREE WEEKEND</h1><p><a href="steam://run/646910"  ><img src="https://cdn.akamai.steamstatic.com/steam/apps/646910/extras/TC2_IM_Pop_up_570x600_EN.jpg?t=1625824717" /></a><br><br>Play for free from 08/07 to 11/07! Your progression is saved if you decide to buy the game!</p><br><h1>GOLD EDITION</h1><p><img src="https://cdn.akamai.steamstatic.com/steam/apps/646910/extras/TC2_GOLD_MOCKUP_WIDE_SOURCE_1_1_UK.jpg?t=1625824717" /><br><br>The Crew 2 – GOLD EDITION features: <br>- Season Pass<br>- The Motorsports Deluxe Pack which includes:<br>* FORD F-150 RAPTOR RACE TRUCK 2017<br>* ABARTH 500 2008 MONSTER TRUCK EDITION<br>* PILATUS PC-21<br>* 3 outfits to customize your avatar<br>- The Digital Special Pack which includes:<br>* DODGE CHALLENGER SRT® DEMON Interception Unit<br>* PORSCHE 911 SPEEDSTER<br><br>JOIN A COMMUNITY OF 30 MILLION PLAYERS! <br><br>Every two months access to new free content: new game mode, vehicles, vanity items, events and more!<br>In Season 3  get ready for a high-speed time trial across the USA!<br><br>Choose from a wide variety of vehicles, experience the thrill and excitement of competing across the USA as you test your skills in a wide range of disciplines. Play with up to 7 friends online.</p><br><h1>Special Edition</h1><p><img src="https://cdn.akamai.steamstatic.com/steam/apps/646910/extras/TC2_SPECIAL_MOCKUP_WIDE_SOURCE_1_1_UK.jpg?t=1625824717" /><br><br>The Crew 2 - SPECIAL EDITION features the Digital Special Pack which includes:<br>- DODGE CHALLENGER SRT® DEMON Interception Unit<br>- PORSCHE 911 SPEEDSTER<br><br>JOIN A COMMUNITY OF 30 MILLION PLAYERS!<br><br>Every two months access to new free content: new game mode, vehicles, vanity items, outfits, events and more!<br>In Season 3  get ready for a high-speed time trial across the USA. Be ready for your seasonal shot of adrenaline!<br><br>Take on the American motorsports scene as you explore the USA in one of the most exhilarating open worlds ever created. With a wide variety of vehicles to choose from, experience the thrill and excitement of competing across the USA as you test your skills in a wide range of disciplines. Play with up to 7 friends online.</p><br><h1>SEASON PASS</h1><p><img src="https://cdn.akamai.steamstatic.com/steam/apps/646910/extras/SEASONPASS_TC2_STEAM_600x_UK.jpg?t=1625824717" /><br><br>Upgrade your American Motorsport adventures with the Season Pass.  It includes three exclusive vehicles, early access to 22 vehicles in monthly drops, a permanent 20% discount to the in-game store.</p><br><h1>About the Game</h1>Play The CREW® 2  full game for free for 4 hours by downloading the trial!<br><br>The newest iteration in the revolutionary franchise, The Crew® 2 captures the thrill of the American motorsports spirit in one of the most exhilarating open worlds ever created. Welcome to Motornation, a huge, varied, action-packed, and beautiful playground built for motorsports throughout the entire US of A. Enjoy unrestrained exploration on ground, sea, and sky. From coast to coast, street and pro racers, off-road explorers, and freestylers gather and compete in all kinds of disciplines. Join them in high-octane contests and share every glorious moment with the world.<br><br>The Crew® 2 gives you the chance to showcase your skills and rise as a multi-skilled motorsports champion.<br><br>FEATURES<br>WELCOME TO MOTORNATION – TAKE THE CHALLENGE TO THE GROUND, SEA, AND SKY<br>Push boundaries and take on new experiences in iconic locations. Fly and spin through fog and clouds above the snowcapped Rocky Mountains, burn rubber in the backstreets of New York City, sweep through the Mississippi River, and explore every inch of the Grand Canyon. Driving your dream hypercar, riding some of the most iconic American bikes, and taking control of the swiftest aerobatic planes and powerboats: opportunities for fun and challenges are limitless in a fully redesigned USA.<br><br>SWITCH INSTANTLY BETWEEN VEHICLES &amp; ENJOY A 100% SEAMLESS EXPERIENCE<br>The Crew® 2 is about open world freedom behind the wheel of your favorite rides. Shift from one to another with just a push of a button using the Fast Fav feature and experience the full potential of this huge and seamless open world. Cruising through L.A in your dream hypercar, switch to the swiftest aerobatic plane to rise above the skyscrapers and enjoy stunning perspectives over Hollywood, then swap it for a slick powerboat as you reach the coastline, landing smoothly on the Pacific ocean: opportunities for fun and challenges are limitless.<br><br><br>BE THE CHAMPION YOU WANT TO BE<br>Join four different motorsports families from around the country: street and pro racers, off-road experts, and freestylers. They’ll hook you up with new rides, and they’ll introduce you to their own unique motorsports culture and set of disciplines. Through competitions and chance encounters, find and hone your personal style, collect and customize your dream rides, show them off in your HQ, and make your mark on the entire US motorsports scene.<br><br>SHARE AND SHINE IN A CONNECTED WORLD<br>The world of The Crew® 2 is fueled by the need to share your personal accomplishments and unique moments with friends and others – break records and be a pioneer! Every time you achieve something, it will be saved as a new challenge for other players, while you will be encouraged to surpass the feats of others. Capture and share all of your best moments with the press of a button.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

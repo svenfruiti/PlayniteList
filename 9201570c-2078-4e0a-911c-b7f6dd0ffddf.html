@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>SpaceEngine</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('9201570c-2078-4e0a-911c-b7f6dd0ffddf/bee57a11-2cb2-4792-a1da-2876a11130f9.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="9201570c-2078-4e0a-911c-b7f6dd0ffddf/18bba21d-f272-4135-87d7-a550b2e8d4e3.ico"/> SpaceEngine</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="9201570c-2078-4e0a-911c-b7f6dd0ffddf/bf103054-fc5b-4de3-9024-1ecb13dc20bd.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Spielzeit</TD>
+								<TD>17h 13m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Letzte Aktivität</TD>
+								<TD><a href="#quicklink-08.04.2021">08.04.2021</a> 1:18:37</TD>
+							</TR>
+							<TR>
+								<TD>Hinzugefügt</TD>
+								<TD><a href="#quicklink-04.11.2021">04.11.2021</a> 0:34:07</TD>
+							</TR>
+							<TR>
+								<TD>Modifiziert</TD>
+								<TD><a href="#quicklink-12.12.2022">12.12.2022</a> 1:13:20</TD>
+							</TR>
+							<TR>
+								<TD>Fertigstellungsstatus</TD>
+								<TD><a href="default_completionstatus_aufsteigend_name_aufsteigend.html#quicklink-Gespielt">Gespielt</a></TD>
+							</TR>
+							<TR>
+								<TD>Bibliothek</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Quelle</TD>
+								<TD><a href="default_source_aufsteigend_name_aufsteigend.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plattform</TD>
+								<TD><a href="default_platform_aufsteigend_name_aufsteigend.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Veröffentlichungsdatum</TD>
+								<TD><a href="#quicklink-11.06.2019">11.06.2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Bewertungen</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_absteigend_name_aufsteigend.html#quicklink-93">93</a></TD>
+							</TR>
+							<TR>
+								<TD>Kritiker Punkte</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Benutzerwertung</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Casual">Casual</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Indie">Indie</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Entwickler</TD>
+								<TD><a href="#quicklink-Vladimir Romanyuk">Vladimir Romanyuk</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Verleger</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-Vladimir Romanyuk">Vladimir Romanyuk</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Eigenschaft</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Controller Support">Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Single Player">Single Player</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-VR Support">VR Support</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Workshop">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/314650" target="_blank">Communityhub</a><br/><a href="https://steamcommunity.com/app/314650/discussions/" target="_blank">Diskussionen</a><br/><a href="https://steamcommunity.com/app/314650/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=314650" target="_blank">Neuigkeiten</a><br/><a href="https://store.steampowered.com/app/314650" target="_blank">Shopseite</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=314650" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/314650/workshop/" target="_blank">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Atmospheric">Atmospheric</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Casual">Casual</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Colorful">Colorful</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Education">Education</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Exploration">Exploration</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Family Friendly">Family Friendly</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Flight">Flight</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Indie">Indie</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Open World">Open World</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Procedural Generation">Procedural Generation</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Realistic">Realistic</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Relaxing">Relaxing</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Sandbox">Sandbox</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Science">Science</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Sci-fi">Sci-fi</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Simulation">Simulation</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Single Player">Single Player</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Space">Space</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Space Sim">Space Sim</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-VR">VR</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Beschreibung</H3>
+				</div>
+				<div class="description">
+					<strong>SpaceEngine</strong> is a 1:1 scale science-based Universe simulator, featuring billions upon billions of galaxies, nebulae, stars, and planets, all shown at their full real-world scale. Explore Earth and our neighboring worlds in the Solar System, orbit a black hole in a galaxy billions of light-years away, or visit anything in between seamlessly, with no transitions.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/314650/extras/saturn.gif?t=1630548669" /><br><br>All of time and space are yours to explore – cruise between the stars at a million times the speed of light, and accelerate time to watch the orbital motions of a thousand worlds play out before your eyes. Every planet you encounter in your journey will feature procedural 3D terrain with detailed textures. Everything you see in the sky – stars and galaxies, planets and moons, asteroids and comets, black holes and neutron stars, star clusters and nebulae – are yours to explore at the press of a button.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/314650/extras/auroras.gif?t=1630548669" /><br><br>Spacecraft with Newtonian physics and pilot-assist autopilot features (in early development but fully usable) are yours to fly anywhere in the universe in the Flight Simulator mode. SpaceEngine is also very friendly for creators of mods and add-ons – create your own planets, star systems, even galaxies, import your own spacecraft models, create custom GUI skins, and more, all easily sharable with others.<br><br>With SpaceEngine, the possibilities are limitless.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/314650/extras/bh.gif?t=1630548669" /><br><br><strong>SpaceEngine Planetarium capabilities:</strong><br><br><ul class="bb_ul"><li><strong>Astronomy</strong><br>All types of celestial objects are represented: galaxies, nebulae, stars and star clusters, planets and moons, comets and asteroids. Known celestial objects are represented using data from catalogs: galaxies (NGC/IC), stars (HIPPARCOS), star clusters, nebulae, and planets (Solar System and known extrasolar planets). Regions of space not yet cataloged feature procedurally generated objects: galaxies, stars, star clusters, nebulae, and planetary systems.<br></li><li><strong>Controls</strong><br>You are free to move around the universe – travel seamlessly between any object and any distance, from surface to orbit to interstellar and intergalactic space. Moving through space is as easy as &quot;click and go&quot;, as well as game-style free flight using the WASD keys or a gamepad. Also, time travel is possible: you can accelerate, decelerate, or reverse the flow of time, and jump to a specified date. Detailed interactive tutorials will familiarize you with the controls.<br></li><li><strong>Graphics</strong><br>Volumetric 3D models of galaxies and nebulae with interstellar dust clouds, and 3D landscapes on planets and stars. For many Solar System bodies, actual data from space probes is used, with huge, high-resolution texture packs available as free DLC. For unmapped and procedural planets, the surface is generated procedurally using your computer's GPU. Other features include realistic atmospheric scattering, eclipse shadows, animated auroras and comet tails, and physically-based light warping near black holes and neutron stars, with animated accretion disks and jets.</li></ul><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/314650/extras/landgif.gif?t=1630548669" /><br><br><ul class="bb_ul"><li><strong>Physics</strong><br>Realistic and physically-based generation of procedural objects (galaxies, star systems, planets) and their physical properties (mass, radius, temperature, atmospheric parameters, etc). The orbital motion of planets, moons, and stars in multiple-star systems are accurately calculated and displayed. Realistic space ship design concepts and physics: orbital motion, atmospheric flight model, and Alcubierre warp drive physics.<br></li><li><strong>Virtual reality</strong><br>SpaceEngine supports Oculus (via native library) and SteamVR (HTC Vive, Valve Index, WMR and other headsets). Support of VR controllers is partial: you can select objects with one controller and move around with the other one. Please note that VR support is still a work in progress, and new users should become familiar with the program in 2D before trying to use VR.<br></li><li><strong>Sound</strong><br>Original background music tracks made by many authors, with context-sensitive playback. Sound effects for planetary environments and space ships are in development.<br></li><li><strong>Tools</strong><br>Built-in tutorials will help you start using the Planetarium. Search for celestial objects by name and search for the nearest star systems. Browse the cosmos using a scalable Universe map and planetary system chart. Saving, exporting, and importing of locations is supported, which can easily be shared between users. The program keeps an automatic journal of objects you have recently visited. Learn every detail about the objects you find using the built-in “Wiki” info system, with additional hand-written descriptions of many known objects. Display the orbital paths of celestial objects, labels and markers, constellations, and other informational tools.<br></li><li><strong>Multi-language support</strong><br>Currently SpaceEngine is available in English, German, French, Italian, Spanish, Dutch, Finnish, Swedish, Croatian, Czech, Polish, Ukrainian, Russian, Catalan, Chinese, Japanese, Korean languages. Many new localizations are under development. Only localizations which are 100% complete are displayed on the Steam store page, but you can enable others in-game.<br></li><li><strong>Modding</strong><br>SpaceEngine supports creating and importing user add-ons: catalogs, models and textures for deep space objects, planets, and space ships. Spacecraft models, representing both real and fictional designs – including from popular sci-fi franchises – are commonly imported and shared by the community on the Steam Workshop.</li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

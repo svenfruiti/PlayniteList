@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Escapists 2</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('c2ee21e3-ae2a-4fc1-bbad-82df13a66a0d/440420ad-023e-4a84-bbc2-4aeeedbd7d88.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="c2ee21e3-ae2a-4fc1-bbad-82df13a66a0d/ec7d9443-d160-4632-ae9c-c6b2ca1ca761.ico"/> The Escapists 2</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="c2ee21e3-ae2a-4fc1-bbad-82df13a66a0d/5b1de8b2-d990-46a9-93c4-83a3fe7ce3e0.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Spielzeit</TD>
+								<TD>1d 3h 10m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Letzte Aktivität</TD>
+								<TD><a href="#quicklink-14.10.2019">14.10.2019</a> 3:20:04</TD>
+							</TR>
+							<TR>
+								<TD>Hinzugefügt</TD>
+								<TD><a href="#quicklink-19.12.2019">19.12.2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modifiziert</TD>
+								<TD><a href="#quicklink-12.12.2022">12.12.2022</a> 0:55:21</TD>
+							</TR>
+							<TR>
+								<TD>Fertigstellungsstatus</TD>
+								<TD><a href="default_completionstatus_aufsteigend_name_aufsteigend.html#quicklink-Abgeschlossen">Abgeschlossen</a></TD>
+							</TR>
+							<TR>
+								<TD>Bibliothek</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Quelle</TD>
+								<TD><a href="default_source_aufsteigend_name_aufsteigend.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plattform</TD>
+								<TD><a href="default_platform_aufsteigend_name_aufsteigend.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Veröffentlichungsdatum</TD>
+								<TD><a href="#quicklink-21.08.2017">21.08.2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Bewertungen</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_absteigend_name_aufsteigend.html#quicklink-76">76</a></TD>
+							</TR>
+							<TR>
+								<TD>Kritiker Punkte</TD>
+								<TD><a href="#quicklink-75">75</a></TD>
+							</TR>
+							<TR>
+								<TD>Benutzerwertung</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Indie">Indie</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Entwickler</TD>
+								<TD><a href="#quicklink-Mouldy Toof Studios">Mouldy Toof Studios</a><br/><a href="#quicklink-Team17 Digital Ltd">Team17 Digital Ltd</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Verleger</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-Team17 Digital Ltd">Team17 Digital Ltd</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Eigenschaft</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Controller Support">Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Co-op">Co-op</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Ranglisten">Ranglisten</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Remote Play">Remote Play</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Single Player">Single Player</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Steam Karten">Steam Karten</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/641990" target="_blank">Communityhub</a><br/><a href="https://steamcommunity.com/app/641990/discussions/" target="_blank">Diskussionen</a><br/><a href="https://store.steampowered.com/news/?appids=641990" target="_blank">Neuigkeiten</a><br/><a href="https://store.steampowered.com/app/641990" target="_blank">Shopseite</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=641990" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/641990/achievements" target="_blank">Errungenschaften</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Achievements">Achievements</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Co-Op">Co-Op</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Remote Play">Remote Play</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Shared/Split Screen">Shared/Split Screen</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Steam Cloud">Steam Cloud</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Beschreibung</H3>
+				</div>
+				<div class="description">
+					<h1>Just Updated</h1><p><i><strong>Snow Way Out Available Now!</strong></i><br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/641990/extras/Steam_-_Snow_Way_Out.gif?t=1573767212" crossorigin="anonymous"><br><br>Prepare for a frosty reception in the North Pole this year - in this free festive Escapists 2 update you’ll be having a woeful Christmas time.<br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/641990/extras/Steam_Screenshot.jpg?t=1573767212" crossorigin="anonymous"><br><br>Rumours have been circulating that since becoming a .com millionaire Santa’s a little past his prime, and his booming online empire has replaced all joy and cheer with cold hard cash and a regime of fear. The grotto’s become a warehouse and the elves have all been replaced by robots, with one exception – you!<br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/641990/extras/steam_screen_2.jpg?t=1573767212" crossorigin="anonymous"><br><br>Santa’s firmly keeping the work in workshop this Christmas with a list of new jobs to keep you busy while incarcerated. The reindeers need feeding, Christmas lists need incinerating and you’re just the elf to do it. Faced with a lifetime of hard labour, it’s time to plan your next daring escape and earn your festive freedom.<br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/641990/extras/Untitled-1.jpg?t=1573767212" crossorigin="anonymous"><br><br>You’ve been put in the nick by St. Nick, have you got what it takes or is there Snow Way Out?</p><br><h1>Just Updated</h1><p><img src="https://steamcdn-a.akamaihd.net/steam/apps/641990/extras/Untitled-1.png?t=1573767212" crossorigin="anonymous"><h2 class="bb_tag">Festive fun in free Santa’s Shakedown update</h2><br>Deck the cells with bars and escape attempts! Christmas has come early in the latest free game update to The Escapists 2, featuring a brand new map – Santa’s Shakedown. Not content with life in a perpetually festive lock-up, you must devise ingenious new ways of getting out of prison without getting caught in the tinsel! Featuring brand new items and some very unique craftables, you must pitch in with new prison jobs such as Christmas tree-decorating and toy soldier construction to blend in until the time is right to ho-ho-hop out of there!<br>Wrap up warm, grab some fellow inmates if it tickles your fancy, and head to the Play Game menu now to experience Santa’s Shakedown.</p><br><h1>Featured DLC</h1><p><img src="https://steamcdn-a.akamaihd.net/steam/apps/641990/extras/WW.jpg?t=1573767212" crossorigin="anonymous"><br><br>Things have taken a strange turn in the locked off rooms of an abandoned hospital. Once again, you’ll have to craft, fight and scheme your way to freedom from this eerie supernatural slammer.</p><br><h1>About the Game</h1><img src="https://steamcdn-a.akamaihd.net/steam/apps/641990/extras/TheEscapists2_Smaller_key_art.png?t=1573767212" crossorigin="anonymous"><h2 class="bb_tag">The Ultimate Prison Sandbox!</h2><img src="https://steamcdn-a.akamaihd.net/steam/apps/641990/extras/Escapists2Danny1.jpg?t=1573767212" crossorigin="anonymous"><br>Risk it all to breakout from the toughest prisons in the world. Explore the biggest prisons yet, with multiple floors, roofs, vents and underground tunnels. <br>You’ll have to live by the prison rules, attending roll call, doing prison jobs and following strict routines; all the while secretly engineering your bid for freedom!<br>Your prison escape antics will take you from the frosty Fort Tundra, a train hurtling through the desert, and even to the final frontier!<h2 class="bb_tag">Escape Team Assemble!</h2><img src="https://steamcdn-a.akamaihd.net/steam/apps/641990/extras/Escapists2Danny4.jpg?t=1573767212" crossorigin="anonymous"> <br>Unite with up to 3 friends to create the ultimate escape crew and engineer the wildest escapes yet! Jump online or gather round on a couch to prepare for your sneaky adventures. By working together you’ll be able to create even more elaborate and daring plans.<br><br>Feeling competitive? Dive into the versus mode and show that you’ve got the skills to break out of any prison faster than your friends can. If all else fails, settle your rivalry in the court yard with a prison punch up!<h2 class="bb_tag">Create YOUR Con!</h2><img src="https://steamcdn-a.akamaihd.net/steam/apps/641990/extras/Escapists2Danny3.jpg?t=1573767212" crossorigin="anonymous"><br>It’s time to make your prisoner truly yours. Choose from a massive array of customisations to make your character unique to you. It’s important to look stylish whilst you mastermind your escape.<h2 class="bb_tag">Craft your Escape!</h2><img src="https://steamcdn-a.akamaihd.net/steam/apps/641990/extras/Escapists2Danny8.jpg?t=1573767212" crossorigin="anonymous"><br>Being in prison forces you to be creative and work with the limited tools at your disposal. You’ll have to combine everyday objects like soap and socks to craft new weapons and tools to help you achieve your goal. Steal forks from the cafeteria to chip a tunnel in your room, and craft a poster from magazines and duct tape to hide the evidence. You’ll soon learn that duct tape solves (almost) everything!<h2 class="bb_tag">Prepare for a fight! </h2><img src="https://steamcdn-a.akamaihd.net/steam/apps/641990/extras/Escapists2Danny7.jpg?t=1573767212" crossorigin="anonymous"><br>The Escapists 2 introduces a brand new combat system to make every prison brawl more exciting and interactive. You’ll have to block and tie together chains of attacks whilst strafing around your locked on targets to gain the upper hand in combat. Make sure your visit the gym first to build up those muscles!<h2 class="bb_tag">New ways to escape!</h2><img src="https://steamcdn-a.akamaihd.net/steam/apps/641990/extras/Escapists2Danny2.jpg?t=1573767212" crossorigin="anonymous"><br>As the prisons get tougher you’re going to have to get more creative with your escape plans. There’s a ton of options to tackle almost any prison escape.<h2 class="bb_tag">Construct a clink!</h2><img src="https://steamcdn-a.akamaihd.net/steam/apps/641990/extras/Editor.jpg?t=1573767212" crossorigin="anonymous"><br>With the Prison Map Editor, it’s your turn to construct a prison worthy of housing the toughest inmates! It includes all the rooms, fences and guard dogs you need to build a prison that’s as hard as your imagination makes it – no duct-tape required.<br>You can pick up those prison blueprints and start crafting your own creations through the Custom Prisons option on the main menu, and when you’re ready you can show the world by sharing them through Steam Workshop where you can download subscribe to fellow architects’ lock-ups – all custom maps can be played either solo or in both local and online multiplayer!<h2 class="bb_tag">Features</h2><ul class="bb_ul"><li>11 Prisons<br></li><li>Up to 4 player co-operative and versus multiplayer<br></li><li> Drop-in/ Drop-out Online/Splitscreen multiplayer<br></li><li>Over 300 customisations<br></li><li>Multi-storey Prisons</li></ul><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/641990/extras/Multiplayer.png?t=1573767212" crossorigin="anonymous">
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

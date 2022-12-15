@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rise of the Tomb Raider</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('c37aa563-b54e-45e4-80a2-97ac2f527d3a/8b0658e3-b373-46b8-9ee2-e331a1c3d454.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="c37aa563-b54e-45e4-80a2-97ac2f527d3a/3524f8e4-02f6-4676-8a23-a4755fd9653f.ico"/> Rise of the Tomb Raider</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="c37aa563-b54e-45e4-80a2-97ac2f527d3a/ab72d6a5-64ec-4469-8c6f-44d9b383782a.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Spielzeit</TD>
+								<TD>1m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Letzte Aktivität</TD>
+								<TD><a href="#quicklink-11.10.2022">11.10.2022</a> 14:06:22</TD>
+							</TR>
+							<TR>
+								<TD>Hinzugefügt</TD>
+								<TD><a href="#quicklink-19.12.2019">19.12.2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modifiziert</TD>
+								<TD><a href="#quicklink-12.12.2022">12.12.2022</a> 1:06:05</TD>
+							</TR>
+							<TR>
+								<TD>Fertigstellungsstatus</TD>
+								<TD><a href="default_completionstatus_aufsteigend_name_aufsteigend.html#quicklink-Gespielt">Gespielt</a></TD>
+							</TR>
+							<TR>
+								<TD>Bibliothek</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Quelle</TD>
+								<TD><a href="default_source_aufsteigend_name_aufsteigend.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plattform</TD>
+								<TD><a href="default_platform_aufsteigend_name_aufsteigend.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Veröffentlichungsdatum</TD>
+								<TD><a href="#quicklink-09.02.2016">09.02.2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Bewertungen</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_absteigend_name_aufsteigend.html#quicklink-83">83</a></TD>
+							</TR>
+							<TR>
+								<TD>Kritiker Punkte</TD>
+								<TD><a href="#quicklink-86">86</a></TD>
+							</TR>
+							<TR>
+								<TD>Benutzerwertung</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Adventure">Adventure</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Entwickler</TD>
+								<TD><a href="#quicklink-Crystal Dynamics">Crystal Dynamics</a><br/><a href="#quicklink-Eidos-Montréal">Eidos-Montréal</a><br/><a href="#quicklink-Feral Interactive (Linux)">Feral Interactive (Linux)</a><br/><a href="#quicklink-Feral Interactive (Mac)">Feral Interactive (Mac)</a><br/><a href="#quicklink-Nixxes software">Nixxes software</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Verleger</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-Feral Interactive (Linux)">Feral Interactive (Linux)</a><br/><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-Feral Interactive (Mac)">Feral Interactive (Mac)</a><br/><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-Square Enix">Square Enix</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Eigenschaft</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Controller Support">Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Ranglisten">Ranglisten</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Remote Play">Remote Play</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Single Player">Single Player</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Steam Karten">Steam Karten</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-VR Support">VR Support</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/391220" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/391220/discussions/" target="_blank">Discussions</a><br/><a href="https://store.steampowered.com/news/?appids=391220" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/391220" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=391220" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/391220/achievements" target="_blank">Achievements</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Achievements">Achievements</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Remote Play">Remote Play</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Steam Cloud">Steam Cloud</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Beschreibung</H3>
+				</div>
+				<div class="description">
+					<h1>Shadow of the Tomb Raider</h1><p><a href="https://store.steampowered.com/app/750920/Shadow_of_the_Tomb_Raider/" target="_blank" rel="noreferrer"  id="dynamiclink_0" >https://store.steampowered.com/app/750920/Shadow_of_the_Tomb_Raider/</a></p><br><h1>Rise of the Tomb Raider out now for macOS and Linux.</h1><p><img src="https://steamcdn-a.akamaihd.net/steam/apps/391220/extras/RotTR_616x200_Steam_MacLinux.png?t=1570657621" ></p><br><h1>VR support for “Blood Ties” story chapter now available on SteamVR!</h1><p><img src="https://steamcdn-a.akamaihd.net/steam/apps/391220/extras/ROTTR20_MainCapsule_616x353_VRCallout.jpg?t=1570657621" ><br>SteamVR support is now available for the “Blood Ties” story chapter from Rise of the Tomb Raider: 20 Year Celebration!<br><br>HTC Vive and Oculus Rift owners can now experience the “Blood Ties” single-player story chapter through the eyes of Lara Croft on SteamVR. If you ever wondered what it would be like to walk through the halls of Croft Manor, VR is the ultimate way to do so. SteamVR allows you to stand in the Manor’s main hall, explore Lord Croft’s office, and discover memories long thought lost in the lower basement levels of the home of Lara’s youth. Explore Lara’s childhood home in VR and uncover a Croft family mystery that will change her life forever.<br><br>The SteamVR update is free and available now. The “Blood Ties” story chapter is included with Rise of the Tomb Raider: 20 year Celebration. Owners of Rise of the Tomb Raider standard edition can purchase the standalone version of Blood Ties, which is included in the 20 Year Celebration pack DLC, or purchase the season pass.</p><br><h1>Season Pass</h1><p><img src="https://steamcdn-a.akamaihd.net/steam/apps/391220/extras/ROTTR20_Infographic_Content1_616x500.png?t=1570657621" ><br><ul class="bb_ul"><li>BABA YAGA: THE TEMPLE OF THE WITCH - 3 hours of new story<br></li><li>ENDURANCE MODE - The ultimate test of survival<br></li><li>COLD DARKNESS AWAKENED - Battle waves of infected enemies<br></li><li>EIGHT OUTFITS, SEVEN WEAPONS AND OVER 35 EXPEDITION CARDS</li></ul><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/391220/extras/ROTTR20_Infographic_Content2_616x500.png?t=1570657621" ><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/391220/extras/ROTTR20_Infographic_Content3_616x500.png?t=1570657621" ><br><ul class="bb_ul"><li>NEW STORY CHAPTER: BLOOD TIES - Explore Croft Manor to reclaim Lara's legacy<br></li><li>NEW CO-OP ENDURANCE MODE - Work together to survive the elements <br></li><li>NEW LARA'S NIGHTMARE MODE - Fight hordes of zombies and defend Croft Manor<br></li><li>ALL PREVIOUSLY RELEASED PRE-ORDER OUTFITS, WEAPONS AND EXPEDITION CARDS. <br></li><li>FIVE CLASSIC LARA CROFT IN-GAME MODELS - PLAY AS YOUR FAVORITE IN EXPEDITION MODES! <br></li><li>NEW EXTREME SURVIVOR DIFFICULTY SETTING FOR THE MAIN CAMPAIGN.<br></li><li>NEW COLD WEATHER OUTFIT AND WEAPON INSPIRIED BY TOMB RAIDER III.</li></ul></p><br><h1>Reviews and Accolades</h1><p>“Lara Croft’s Best Story Yet” - <a href="https://steamcommunity.com/linkfilter/?url=http://mashable.com/2015/11/10/rise-of-the-tomb-raider-review/#zO0NUpOElgqy" target="_blank" rel="noopener"  >Mashable</a><br><br>“The most fascinating action hero in video games today.” - <a href="http://www.ign.com/articles/2015/11/09/rise-of-the-tomb-raider-review" target="_blank" rel="noreferrer"  >IGN</a><br><br>“Rise of the Tomb Raider is an adrenaline rush” - <a href="https://steamcommunity.com/linkfilter/?url=http://www.gameinformer.com/games/rise_of_the_tomb_raider/b/xboxone/archive/2015/11/09/rise-of-the-tomb-raider-review-game-informer.aspx" target="_blank" rel="noopener"  >GameInformer</a><br><br>“One of the best action adventure games out there” - <a href="https://steamcommunity.com/linkfilter/?url=http://www.forbes.com/sites/games/2015/11/09/rise-of-the-tomb-raider-review-lara-the-explorer" target="_blank" rel="noopener"  >Forbes</a><br><br>“Rise of the Tomb Raider is everything I want a video game to be.” - <a href="https://steamcommunity.com/linkfilter/?url=http://www.videogamer.com/reviews/rise_of_the_tomb_raider_review.html" target="_blank" rel="noopener"  >VideoGamer</a><br><br>“The best kind of action game.” - <a href="https://steamcommunity.com/linkfilter/?url=http://www.gamerevolution.com/review/rise-of-the-tomb-raider" target="_blank" rel="noopener"  >-	Game Revolution</a><br><br>“Rise of the Tomb Raider is a blast to play.” - <a href="https://steamcommunity.com/linkfilter/?url=http://www.gaming-age.com/2015/11/rise-of-the-tomb-raider-review-for-xbox-one/" target="_blank" rel="noopener"  >Gaming Age</a><br><br>“Lara Croft is back, better than ever” - <a href="https://steamcommunity.com/linkfilter/?url=http://gamingtrend.com/reviews/i-will-rise-again-and-again-rise-of-the-tomb-raider-review/" target="_blank" rel="noopener"  >Gaming Trend</a><br><br>“Magnificent. Intelligent, beautiful, varied and huge” - <a href="https://steamcommunity.com/linkfilter/?url=http://www.gamesradar.com/rise-tomb-raider-review/" target="_blank" rel="noopener"  >GamesRadar</a></p><br><h1>About the Game</h1><img src="https://steamcdn-a.akamaihd.net/steam/apps/391220/extras/ROTTR_AimGreater_30.jpg?t=1570657621" ><br>Rise of the Tomb Raider: 20 Year Celebration includes the base game and Season Pass featuring all-new content. Explore Croft Manor in the new “Blood Ties” story, then defend it against a zombie invasion in “Lara’s Nightmare”. Survive extreme conditions with a friend in the new online Co-Op Endurance mode, and brave the new “Extreme Survivor” difficulty. Also features an outfit and weapon inspired by Tomb Raider III, and 5 classic Lara skins. Existing DLC will challenge you to explore a new tomb that houses an ancient terror in Baba Yaga: The Temple of the Witch, and combat waves of infected predators in Cold Darkness Awakened.<br><br><strong>KEY FEATURES:</strong><br><ul class="bb_ul"><li>Lara’s Journey – Lara uncovers an ancient mystery that places her in the cross-hairs of a ruthless organization known as Trinity. As she races to find the secret before Trinity, the trail leads to a myth about the Lost City of Kitezh. Lara knows she must reach the Lost City and its hidden secrets before Trinity. With that, she sets out for Siberia on her first Tomb Raiding expedition.<br></li><li>Woman vs. Wild – In “Rise of the Tomb Raider,” Lara battles with not only enemies from around the world, but the world itself. Hunt animals to craft weapons and scavenge for rare resources in densely populated ecosystems. You’ll encounter beautifully hostile environments, full of treacherous conditions and unstable landscapes that will require Lara to push her limits to the very edge. <br></li><li>Guerilla Combat - Use the environment to your advantage, scale trees and dive underwater to avoid or takedown enemies, configure Lara’s gear, weapons, and ammo to suit your play style from stealth to guns blazing, craft explosives on the fly to sow chaos, and wield Lara’s signature combat bows and climbing axe. <br></li><li>Return to Tomb Raiding – Tombs are back, and they’re bigger and better than ever. In “Rise of the Tomb Raider” you’ll explore huge, awe-inspiring ancient spaces littered with deadly traps, solve dramatic environmental puzzles, and decipher ancient texts to reveal crypts as you take on a world filled with secrets to discover.</li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

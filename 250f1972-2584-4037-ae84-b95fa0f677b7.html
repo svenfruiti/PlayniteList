@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Touhou : Shooting Star | 東方流星譚</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('250f1972-2584-4037-ae84-b95fa0f677b7/81ccaa4b-4d3a-46e3-aacd-ab909c0ef420.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="250f1972-2584-4037-ae84-b95fa0f677b7/c6b79213-46d0-4c12-8546-001b01f40c51.ico"/> Touhou : Shooting Star | 東方流星譚</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="250f1972-2584-4037-ae84-b95fa0f677b7/3bd50163-70fb-4a2a-acc6-c55a463b39c0.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Spielzeit</TD>
+								<TD>Nicht gespielt</TD>
+							</TR>
+							<TR>
+								<TD>Letzte Aktivität</TD>
+								<TD><a href="#quicklink-Nie">Nie</a> </TD>
+							</TR>
+							<TR>
+								<TD>Hinzugefügt</TD>
+								<TD><a href="#quicklink-25.11.2022">25.11.2022</a> 23:04:10</TD>
+							</TR>
+							<TR>
+								<TD>Modifiziert</TD>
+								<TD><a href="#quicklink-25.11.2022">25.11.2022</a> 23:17:53</TD>
+							</TR>
+							<TR>
+								<TD>Fertigstellungsstatus</TD>
+								<TD><a href="default_completionstatus_aufsteigend_name_aufsteigend.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Bibliothek</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Quelle</TD>
+								<TD><a href="default_source_aufsteigend_name_aufsteigend.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plattform</TD>
+								<TD><a href="default_platform_aufsteigend_name_aufsteigend.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Veröffentlichungsdatum</TD>
+								<TD><a href="#quicklink-15.06.2020">15.06.2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Bewertungen</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_absteigend_name_aufsteigend.html#quicklink-80">80</a></TD>
+							</TR>
+							<TR>
+								<TD>Kritiker Punkte</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Benutzerwertung</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Entwickler</TD>
+								<TD><a href="#quicklink-星屑ラボラトリー">星屑ラボラトリー</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Verleger</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-T-Works">T-Works</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Eigenschaft</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Controller Support">Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/1299420" target="_blank">Communityhub</a><br/><a href="https://steamcommunity.com/app/1299420/discussions/" target="_blank">Diskussionen</a><br/><a href="https://steamcommunity.com/app/1299420/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=1299420" target="_blank">Neuigkeiten</a><br/><a href="https://store.steampowered.com/app/1299420" target="_blank">Shopseite</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1299420" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-[EMT] Logo Missing">[EMT] Logo Missing</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Bullet Hell">Bullet Hell</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Faith">Faith</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Indie">Indie</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-RPG">RPG</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Shoot 'Em Up">Shoot 'Em Up</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Beschreibung</H3>
+				</div>
+				<div class="description">
+					<strong> !!!!About English Translation!!!! </strong><br>As for English, the system messages have been translated.<br>For conversational text, machine translation is used, so there are some unnatural points in the translation. Also, parts of the conversation may appear in a different language. Please be aware of this.<h2 class="bb_tag">About Touhou:Shooting Star -Touhou Ryuseitan</h2><br>As a wizard &quot;Marisa Kirisame&quot;, Fly in the Gensokyo!<br>This is fun game of &quot;Touhou Project&quot;!<br>Let's play &quot;Danmaku&quot;!<h2 class="bb_tag">３D Danmaku Battle</h2>Fly and fight in the Gensokyo.<br>3-directyional bullets is reaching to you.<br>Avoid bullets and shot down enemys!<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1299420/extras/picm1.gif?t=1646735254" /><h2 class="bb_tag">Spell Card</h2>Boss enemys use &quot;Spell Card&quot;.<br>Defeat their beautiful danmaku and Get ther Spell Card!<br>Analyze and avoid characteristical bullet patten.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1299420/extras/picm2.gif?t=1646735254" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1299420/extras/picm3.gif?t=1646735254" /><h2 class="bb_tag">Develop your weapon</h2>Get materials from defeated enemys and develop more strong weapon, armor, and spell card.<br>Make your own equipments set.<br>Each weapon has parameters and bullet.<br>Each Armor has parameters and skills and appearance.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1299420/extras/DevelopWeapon.png?t=1646735254" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1299420/extras/DevelopCore.png?t=1646735254" /><h2 class="bb_tag">Quest</h2>This game includes more 30 quests! <br>Enemy boss character is more than 10 !<br>And every quest has sub targets.<br>Let's try &quot;No damage clear&quot;,&quot;Time attack&quot;,&quot;Get all spell cards&quot; and so on.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1299420/extras/QuestList.png?t=1646735254" /><h2 class="bb_tag">Talk in Gensokyo</h2>There are many characters of &quot;Touhou Project&quot; in the village and can talk to them.<br>Let's talk as Marisa!<br>There is original illust of characters of Touhou Project.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1299420/extras/TalkVillage.png?t=1646735254" /><h2 class="bb_tag">Boutique</h2>You can change Marisa's cloth.<br>Find your favorite cloth and fly in Gensokyo.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1299420/extras/Boutique.png?t=1646735254" />
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>New World</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('a350aa91-1d47-40c9-84f0-aec9b5aff380/ab1fb9c2-6f85-44ab-b1d2-033a8574a6c5.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="a350aa91-1d47-40c9-84f0-aec9b5aff380/d6796545-b8d4-4d86-b50c-4210d879663b.ico"/> New World</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="a350aa91-1d47-40c9-84f0-aec9b5aff380/2948b50a-2528-4d63-90ba-db4356b24360.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Spielzeit</TD>
+								<TD>1d 6h 2m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Letzte Aktivität</TD>
+								<TD><a href="#quicklink-13.10.2021">13.10.2021</a> 22:07:04</TD>
+							</TR>
+							<TR>
+								<TD>Hinzugefügt</TD>
+								<TD><a href="#quicklink-28.09.2021">28.09.2021</a> 21:48:25</TD>
+							</TR>
+							<TR>
+								<TD>Modifiziert</TD>
+								<TD><a href="#quicklink-12.12.2022">12.12.2022</a> 1:08:04</TD>
+							</TR>
+							<TR>
+								<TD>Fertigstellungsstatus</TD>
+								<TD><a href="default_completionstatus_aufsteigend_name_aufsteigend.html#quicklink-Verlassen">Verlassen</a></TD>
+							</TR>
+							<TR>
+								<TD>Bibliothek</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Quelle</TD>
+								<TD><a href="default_source_aufsteigend_name_aufsteigend.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plattform</TD>
+								<TD><a href="default_platform_aufsteigend_name_aufsteigend.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Veröffentlichungsdatum</TD>
+								<TD><a href="#quicklink-28.09.2021">28.09.2021</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Bewertungen</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_absteigend_name_aufsteigend.html#quicklink-44">44</a></TD>
+							</TR>
+							<TR>
+								<TD>Kritiker Punkte</TD>
+								<TD><a href="#quicklink-72">72</a></TD>
+							</TR>
+							<TR>
+								<TD>Benutzerwertung</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Adventure">Adventure</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-🐎 RPG">🐎 RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Entwickler</TD>
+								<TD><a href="#quicklink-Amazon Games">Amazon Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Verleger</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-Amazon Games">Amazon Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Eigenschaft</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Co-op">Co-op</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-In App Käufe">In App Käufe</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Pvp">Pvp</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/1063730" target="_blank">Communityhub</a><br/><a href="https://steamcommunity.com/app/1063730/discussions/" target="_blank">Diskussionen</a><br/><a href="https://steamcommunity.com/app/1063730/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=1063730" target="_blank">Neuigkeiten</a><br/><a href="https://store.steampowered.com/app/1063730" target="_blank">Shopseite</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1063730" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/1063730/achievements" target="_blank">Errungenschaften</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Action">Action</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Adventure">Adventure</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Character Customization">Character Customization</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Co-Op">Co-Op</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Crafting">Crafting</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Fantasy">Fantasy</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-MMORPG">MMORPG</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Open World">Open World</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Open World Survival Craft">Open World Survival Craft</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-PvE">PvE</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-PvP">PvP</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-RPG">RPG</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Sandbox">Sandbox</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Sexual Content">Sexual Content</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Single Player">Single Player</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Third Person">Third Person</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Violent">Violent</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Walking Simulator">Walking Simulator</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Beschreibung</H3>
+				</div>
+				<div class="description">
+					<h1>New World -  Deluxe Edition</h1><p><img src="https://cdn.akamai.steamstatic.com/steam/apps/1063730/extras/EditionSelector_DeluxeEdition-616x353.jpg?t=1632842444" /><br><br>Enter the land of Aeternum ready to face the supernatural frontier with the New World Deluxe Edition. <br><ul class="bb_ul"><li>Explore a beautiful open world as you move through the wilderness and ruins of the island of Aeternum.<br></li><li>Join forces with other players to form powerful companies of craftspeople, soldiers, and strategists.<br></li><li>Claim and control territories to direct the development of settlements.<br></li><li>Fight for survival against enemy raiders, the brutal wilderness, and a growing evil.<br></li><li>Gather materials and craft thousands of items, from magical elixirs and deadly weapons to sprawling fortifications.</li></ul><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1063730/extras/Woodsman_Deluxe_Benefit_616x346.jpg?t=1632842444" /><h2 class="bb_tag">The Deluxe Edition includes:</h2> <strong>Woodsman armor skin</strong><br>Stand out from the crowd or blend in with the forest with the Woodsman armor skin.<br><br><strong>Woodsman hatchet skin</strong><br>Complete the Woodsman look with this skin for the versatile hatchet.<br><br><strong>Mastiff house pet</strong><br>Make your house a home with the Mastiff house pet. Access to housing unlocks at level 15 in-game.<br><br><strong>Rock/Paper/Scissors emote set</strong><br>Rock, Paper, Scissors, a light-hearted game with friends or a tool for making difficult decisions.<br><br><strong>New World digital art book</strong><br>A collection of incredible concept art from the making of New World.</p><br><h1>New World - Standard Edition</h1><p><img src="https://cdn.akamai.steamstatic.com/steam/apps/1063730/extras/EditionSelector_StandardEdition-616x353.jpg?t=1632842444" /><br><br>Fate has summoned you to the shores of Aeternum, the Eternal Isle. In a land hell-bent on your destruction, what will you do to survive?<br><ul class="bb_ul"><li>Explore a beautiful open world as you move through the wilderness and ruins of the island of Aeternum.<br></li><li>Join forces with other players to form powerful companies of craftspeople, soldiers, and strategists.<br></li><li>Claim and control territories to direct the development of settlements.<br></li><li>Fight for survival against enemy raiders, the brutal wilderness, and a growing evil.<br></li><li>Gather materials and craft thousands of items, from magical elixirs and deadly weapons to sprawling fortifications.</li></ul></p><br><h1>About the Game</h1>Explore a thrilling, open-world MMO filled with danger and opportunity where you'll forge a new destiny for yourself as an adventurer shipwrecked on the supernatural island of Aeternum. Endless opportunities to fight, forage, and forge await you among the island's wilderness and ruins. Channel supernatural forces or wield deadly weapons in a classless, real-time combat system, and fight alone, with a small team, or in massed armies for PvE and PvP battles—the choices are all yours.<h2 class="bb_tag">KEY FEATURES:</h2><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1063730/extras/NW_Carve.gif?t=1632842444" /><br><strong>CARVE YOUR DESTINY</strong><br>For thousands of years, Aeternum has been the source of fantastical legends—and now you’ve found it. Shipwrecked and without supplies or allies, you’ll need to make your way in a dangerous world where supernatural power has changed all the rules. In such a land, your destiny is whatever you make of it.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1063730/extras/NW_Land_Magic_2.gif?t=1632842444" /><br><strong>A LAND SHAPED BY MAGIC</strong><br>Aeternum's mysteries run as deep and dark as its history. Delve into the world and uncover the secret truth of the island and its millennia of strange inhabitants. As you explore Aeternum, you’ll discover beauty, danger, and opportunity at every turn. You'll need to use all your skills to take advantage of the island's bounty—and survive its horrors.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1063730/extras/NW_Sword_Sorcery_2.gif?t=1632842444" /><br><strong>SWORDS, GUNS &amp; SORCERY</strong><br>Arm yourself with brutal melee weapons, ranged artillery, or supernatural powers and jump into New World's classless, real-time action combat system. As you progress you'll be able to determine what you want your gameplay experience to be like—will you act as a protective shield on the front lines of battle? Will you sling spells to support your allies from a safe distance? Only you can decide.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1063730/extras/NW_Stronger_Together.gif?t=1632842444" /><br><strong>STRONGER TOGETHER</strong><br>At the core of the New World’s social features are the three factions, organizations of like-minded players and non-player characters with their own motives and schemes for the island's future. It is as a member of one of these factions that you'll wage war and claim, defend, and develop your territory.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hell Architect: Prologue</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('01418a4f-c5d5-4633-934d-334f6664bd22/4da5e7f9-4536-453c-a2c2-b89dd11a365a.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="01418a4f-c5d5-4633-934d-334f6664bd22/dee5f5e2-9aaf-47b9-9882-823ef21e17ce.ico"/> Hell Architect: Prologue</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="01418a4f-c5d5-4633-934d-334f6664bd22/5d5b3e37-d5ba-4549-9d21-0246afb5ef00.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Spielzeit</TD>
+								<TD>4m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Letzte Aktivität</TD>
+								<TD><a href="#quicklink-21.06.2021">21.06.2021</a> 22:51:08</TD>
+							</TR>
+							<TR>
+								<TD>Hinzugefügt</TD>
+								<TD><a href="#quicklink-27.06.2021">27.06.2021</a> 21:30:26</TD>
+							</TR>
+							<TR>
+								<TD>Modifiziert</TD>
+								<TD><a href="#quicklink-12.12.2022">12.12.2022</a> 1:34:05</TD>
+							</TR>
+							<TR>
+								<TD>Fertigstellungsstatus</TD>
+								<TD><a href="default_completionstatus_aufsteigend_name_aufsteigend.html#quicklink-Gespielt">Gespielt</a></TD>
+							</TR>
+							<TR>
+								<TD>Bibliothek</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Quelle</TD>
+								<TD><a href="default_source_aufsteigend_name_aufsteigend.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plattform</TD>
+								<TD><a href="default_platform_aufsteigend_name_aufsteigend.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Veröffentlichungsdatum</TD>
+								<TD><a href="#quicklink-09.06.2021">09.06.2021</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Bewertungen</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_absteigend_name_aufsteigend.html#quicklink-76">76</a></TD>
+							</TR>
+							<TR>
+								<TD>Kritiker Punkte</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Benutzerwertung</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-⚙️ Strategie">⚙️ Strategie</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Indie">Indie</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Entwickler</TD>
+								<TD><a href="#quicklink-Woodland Games">Woodland Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Verleger</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-Leonardo Interactive">Leonardo Interactive</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Eigenschaft</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/1382910" target="_blank">Communityhub</a><br/><a href="https://steamcommunity.com/app/1382910/discussions/" target="_blank">Diskussionen</a><br/><a href="https://steamcommunity.com/app/1382910/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=1382910" target="_blank">Neuigkeiten</a><br/><a href="https://store.steampowered.com/app/1382910" target="_blank">Shopseite</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1382910" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-2D">2D</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Base Building">Base Building</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Building">Building</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Cartoon">Cartoon</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Cartoony">Cartoony</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-City Builder">City Builder</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Colony Sim">Colony Sim</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Colorful">Colorful</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Comedy">Comedy</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Cute">Cute</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Dark Comedy">Dark Comedy</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Dark Humor">Dark Humor</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Dungeon Crawler">Dungeon Crawler</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Economy">Economy</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Funny">Funny</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Management">Management</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Open World">Open World</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Sandbox">Sandbox</a><br/><a href="default_tag_aufsteigend_name_aufsteigend.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Beschreibung</H3>
+				</div>
+				<div class="description">
+					<h1>Add full version of Hell Architect to Wishlist</h1><p><a href="https://store.steampowered.com/app/1063980/Hell_Architect/" target="_blank" rel="noreferrer"  id="dynamiclink_0" >https://store.steampowered.com/app/1063980/Hell_Architect/</a></p><br><h1>Check out those cool games</h1><p><a href="https://store.steampowered.com/app/1283230/Autopsy_Simulator/" target="_blank" rel="noreferrer"  id="dynamiclink_1" >https://store.steampowered.com/app/1283230/Autopsy_Simulator/</a><br><a href="https://store.steampowered.com/app/1159390/Taxi_Simulator/" target="_blank" rel="noreferrer"  id="dynamiclink_2" >https://store.steampowered.com/app/1159390/Taxi_Simulator/</a></p><br><h1>About the Game</h1><a href="https://steamcommunity.com/linkfilter/?url=https://discord.gg/y5E2GVH" target="_blank" rel="noopener"  ><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1382910/extras/discord2_copy.png?t=1623769031" /></a><br>Hell Architect Prologue is a free standalone version of the game 'Hell Architect'. This is beginning of a story where you start as a newbie manager of Hell. You are tasked with developing the underworld in a way that would make Lucifer himself fall off his chair. Let the Hell begin!<br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1382910/extras/graphic_1b.png?t=1623769031" /><br>Create a hell of your dreams - will it have the infamous 9 levels, or will you create your own chaos, the way you see fit?<br>You begin with some basic buildings, like toilets (yup, they need those in hell, too!) and canteens, work your way through shrines and toilets and finish off with some intricate torture contraptions.<br>– Build your hell using materials like dirt, metal, coal etc and became best Hell manager!<br>– Take care of your sinners. You have to feed them, water them. They also have to rest (so you shuld build them something to sleep). Ofc you haven't to do anything from this list :)<br>– This everything in cute and stylish 2D graphics style!<br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1382910/extras/graphic_2b.png?t=1623769031" /><br>You can treat the sinners sent to your humble abode to different, fun (or not) sources of suffering - be it by punishing them for disobedience or just doing it for fun. Your hell, your choices.<br><br><ul class="bb_ul"><li>BUILD AND MANAGE YOUR HELL<br>  </li><li>GROW YOUR POPULATION<br>  </li><li>TAKE CARE OF THE SINNERS<br> </li><li>SCENARIOS &amp; SANDBOX MODE<br> </li><li>DEVELOP BUILDINGS<br> </li><li>SUMMON LEGENDARY CHARACTERS WITH UNIQUE ABILITIES<br> </li><li>GATHER RESOURCES<br> </li><li>UPGRADE BUILDINGS</li></ul><br>Hell Architect Prologue is a title inspired by games such as Dungeon Keeper, Oxygen Not Included and Prison Architect but does everything in its own, hellish style.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

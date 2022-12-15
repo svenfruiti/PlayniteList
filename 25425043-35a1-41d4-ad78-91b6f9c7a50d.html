@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Jurassic Park: Operation Genesis</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('25425043-35a1-41d4-ad78-91b6f9c7a50d/d240e9a6-dacf-4d62-9b0a-d34e86e666ba.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="25425043-35a1-41d4-ad78-91b6f9c7a50d/5ad6a365-9a45-46ce-9329-5ffbee8d128c.ico"/> Jurassic Park: Operation Genesis</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="25425043-35a1-41d4-ad78-91b6f9c7a50d/610ac02d-ff5e-42a6-889d-4c8a61dde0bd.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Spielzeit</TD>
+								<TD>Nicht gespielt</TD>
+							</TR>
+							<TR>
+								<TD>Letzte Aktivität</TD>
+								<TD><a href="#quicklink-Nie">Nie</a> </TD>
+							</TR>
+							<TR>
+								<TD>Hinzugefügt</TD>
+								<TD><a href="#quicklink-26.10.2022">26.10.2022</a> 10:12:28</TD>
+							</TR>
+							<TR>
+								<TD>Modifiziert</TD>
+								<TD><a href="#quicklink-10.11.2022">10.11.2022</a> 14:14:02</TD>
+							</TR>
+							<TR>
+								<TD>Fertigstellungsstatus</TD>
+								<TD><a href="default_completionstatus_aufsteigend_name_aufsteigend.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Bibliothek</TD>
+								<TD><a href="#quicklink-Playnite">Playnite</a></TD>
+							</TR>
+							<TR>
+								<TD>Quelle</TD>
+								<TD><a href="default_source_aufsteigend_name_aufsteigend.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Plattform</TD>
+								<TD><a href="default_platform_aufsteigend_name_aufsteigend.html#quicklink-PlayStation 2">PlayStation 2</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Veröffentlichungsdatum</TD>
+								<TD><a href="#quicklink-10.03.2003">10.03.2003</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Bewertungen</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_absteigend_name_aufsteigend.html#quicklink-73">73</a></TD>
+							</TR>
+							<TR>
+								<TD>Kritiker Punkte</TD>
+								<TD><a href="#quicklink-74">74</a></TD>
+							</TR>
+							<TR>
+								<TD>Benutzerwertung</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-⚙️ Strategie">⚙️ Strategie</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Entwickler</TD>
+								<TD><a href="#quicklink-Blue Tongue Entertainment">Blue Tongue Entertainment</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Verleger</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-Konami">Konami</a><br/><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-Universal Interactive Studios">Universal Interactive Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Eigenschaft</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Beschreibung</H3>
+				</div>
+				<div class="description">
+					Jurassic Park: Operation Genesis is a construction and management simulation video game for the PC, Xbox, and PlayStation 2 based on the Jurassic Park series.
+<br>
+<br>The main point of the game is to recreate Jurassic Park - building a five-star theme park with dinosaurs, and turning John Hammond's dream into reality. In the park, the player builds paths, amenities for visitors such as food, restrooms, enclosures, and attractions. One must also keep the park safe and secure.
+<br>
+<br>The park can be populated with up to sixty dinosaurs, with twenty-five different species available from the three Jurassic Park films. The player can also add attractions similar to those seen in the films, such as the safari seen in the Jurassic Park film, and additional attractions such as a balloon tour and several varieties of viewing platform.
+<br>
+<br>While the PlayStation 2 version is fairly common, the PC and Xbox versions of the game are considerably rare, with the Xbox version considered one of the rarest and most expensive titles for the system, with copies of the game often selling on eBay for upwards of $100.
+<br>
+<br>GAMEPLAY:
+<br>The player's main objective is to create a theme park/zoo featuring dinosaurs, make it popular, and make it safe with a 5-star rating. Gameplay functions are very similar to the SimCity and Tycoon game models. It is necessary to build feeding stations where herbivores can get bales of plant feed, while carnivores are fed live cows or goats. However, herbivores become unhappy if they don't have enough trees around them or enough nearby dinosaurs to socialize with. Likewise, carnivores have an innate desire to hunt other dinosaurs, so even a constant stream of livestock will not keep them happy.
+<br>
+<br>To create a dinosaur, fifty percent (50%) of the particular dinosaur's DNA is needed. The higher the percentage of DNA, the longer that dinosaur will live, unless it dies by means other than natural causes, such as malnutrition or being attacked by another dinosaur. To obtain a dinosaur's DNA, the player must extract it through fossils or amber. Higher quality specimens will yield more DNA.
+<br>
+<br>To obtain fossils and amber, the player must send a fossil-hunting team to dig in one of nine dig sites around the world. Additional dig teams can be purchased later in the game. Each dig site contains fossils from three particular dinosaurs. Fossils of some dinosaurs, such as Brachiosaurus, can be found in more than one dig site. The chance of finding fossils depends on the quality of the site. There are 6 classifications on the quality of a dig site, ranging from "excellent" to "exhausted." It is still possible to find fossils and amber at sites that have been exhausted, although they are often of low quality with little DNA to provide. Valuable items such as silver, gold, or opal are also discovered infrequently by the dig team(s), and can be sold for profit.
+<br>
+<br>Attractions help make the park popular, and increase its rating power and income when correctly configured. Attractions must be researched before they can be constructed, and include the Balloon Tour, Safari Adventure and Viewing Dome. Viewing Vents and Viewing Platforms do not need to be researched. The Safari Tour and Balloon Tour attractions allow for the player to "take over" the ride for the purpose of park exploration and photography, but only when a visitor in the game is using it. The player may also observe the dinosaurs from the Viewing Dome, Viewing Vent, and Viewing Platform by selecting the "View" option after clicking on the building.
+<br>
+<br>Amenities such as restrooms and restaurants are needed for visitors. Additional buildings such as a gift shop and a resting area must be researched before the player can add them into the park. Vaccines for diseases–such as tick infestation, gastric poisoning, rabies, and the fictional Dino Flu–must be researched before a sick dinosaur can be treated for a particular illness.
+<br>
+<br>DINOSAURS:
+<br>There are a total of 25 dinosaurs featured in the game, some of which were featured in the films. They are divided into four main sub-groups. Small Herbivores such as Gallimimus and Pachycephalosaurus are easy to care for and do not take up much space, but are not as popular with guests. Large Herbivores such as Brachiosaurus and Triceratops are very popular with visitors and do not require expensive fences, but need large spacious exhibits.
+<br>
+<br>Small Carnivores such as Dilophosaurus and Velociraptor do not generally need vigorous security as their larger counterparts, but can still harm guests if they escape. Large Carnivores such as Tyrannosaurus and Spinosaurus are the most popular dinosaurs in the game, but require large exhibits with high security fences and are prone to rampaging when stressed.
+<br>
+<br>MISSIONS:
+<br>The game has 10 missions the player can complete. In some websites like IGN and GameSpot, early previews indicated that there were originally to be 12 missions. There are about three or four general types of missions, including taking photographs of dinosaurs to try to rack up a certain amount of points from the photos in a safari mission and dinosaur control missions where the player has to retire the carnivores (preferably large ones) to protect the herbivores.
+<br>
+<br>SITE B:
+<br>After all the missions are completed, the "Site B" mode is unlocked, which allows the player to create an island without any fences or buildings for people, similar to Isla Sorna in The Lost World: Jurassic Park and Jurassic Park III. Visitors are not allowed on the island. The player can place up to eight hatcheries and create up to sixty dinosaurs, which live on the island without diseases or the possibility of becoming stressed. As long as they have food, water and living space, the player can simply watch the dinosaurs interact and live out their lives.
+<br>
+<br>FAN MODIFICATIONS:
+<br>Because of the PC version's modular file structure, the game is very easy to modify with nothing more than a regular text editor. It is possible to create almost completely new missions, exercises, dinosaurs, dinosaur designs, new visitor appearances, and play options. The Indominus rex, a genetic hybrid dinosaur from Jurassic World, was made available in June 2015.
+<br>
+<br>Thanks to the open ended design, a small community of fans have come together to improve realism, unlock unreleased features, and design new features to be included. A group of people have formed the Community Expansion Project and the Genesis Expansion Project, which takes previous modifications and designs new ones for release in a patch for the overall community.
+<br>
+<br>The team's main aim is to recreate the dinosaurs to be as realistic as possible, mainly expanding and creating new behavior. Two other modification sets, the Film-Canon Mod (FCM) and Novel-Canon Mod (NCM), are from Jurassic Park fansite, JPLegacy.org. The NCM includes dinosaur designs and islands based on the Jurassic Park novels. The FCM includes film-based dinosaur designs, music, sounds, and islands. Since the release of the first expansions, many others have appeared, with increased sophistication to make the game more realistic.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
