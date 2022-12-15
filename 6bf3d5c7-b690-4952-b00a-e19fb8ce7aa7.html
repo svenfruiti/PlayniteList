@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Kingdom Rush Frontiers</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('6bf3d5c7-b690-4952-b00a-e19fb8ce7aa7/102cb398-f251-4ef2-8bf7-8900985c640d.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="6bf3d5c7-b690-4952-b00a-e19fb8ce7aa7/a13ebedf-8000-4dfe-8d44-be435fd24b96.ico"/> Kingdom Rush Frontiers</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="6bf3d5c7-b690-4952-b00a-e19fb8ce7aa7/4fc6ac1c-8c04-4a7a-8473-52a5ebf5bdf5.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Spielzeit</TD>
+								<TD>Nicht gespielt</TD>
+							</TR>
+							<TR>
+								<TD>Letzte Aktivität</TD>
+								<TD><a href="#quicklink-Nie">Nie</a> </TD>
+							</TR>
+							<TR>
+								<TD>Hinzugefügt</TD>
+								<TD><a href="#quicklink-04.12.2021">04.12.2021</a> 15:22:04</TD>
+							</TR>
+							<TR>
+								<TD>Modifiziert</TD>
+								<TD><a href="#quicklink-12.12.2022">12.12.2022</a> 1:33:17</TD>
+							</TR>
+							<TR>
+								<TD>Fertigstellungsstatus</TD>
+								<TD><a href="default_completionstatus_aufsteigend_name_aufsteigend.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Bibliothek</TD>
+								<TD><a href="#quicklink-Playnite">Playnite</a></TD>
+							</TR>
+							<TR>
+								<TD>Quelle</TD>
+								<TD><a href="default_source_aufsteigend_name_aufsteigend.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Plattform</TD>
+								<TD><a href="default_platform_aufsteigend_name_aufsteigend.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Veröffentlichungsdatum</TD>
+								<TD><a href="#quicklink-25.07.2016">25.07.2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Bewertungen</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_absteigend_name_aufsteigend.html#quicklink-93">93</a></TD>
+							</TR>
+							<TR>
+								<TD>Kritiker Punkte</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Benutzerwertung</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-⚙️ Strategie">⚙️ Strategie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Entwickler</TD>
+								<TD><a href="#quicklink-Ironhide Game Studio">Ironhide Game Studio</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Verleger</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-Ironhide Game Studio">Ironhide Game Studio</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Eigenschaft</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Single Player">Single Player</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Steam Karten">Steam Karten</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/458710" target="_blank">Communityhub</a><br/><a href="https://steamcommunity.com/app/458710/discussions/" target="_blank">Diskussionen</a><br/><a href="https://steamcommunity.com/app/458710/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=458710" target="_blank">Neuigkeiten</a><br/><a href="https://store.steampowered.com/app/458710" target="_blank">Shopseite</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=458710" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/458710/achievements" target="_blank">Errungenschaften</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Beschreibung</H3>
+				</div>
+				<div class="description">
+					The world's most devilishly addictive defense game is back - welcome to Kingdom Rush: Frontiers! <br><br>Bigger and badder than ever before, Kingdom Rush: Frontiers is a whole new level of the furiously fast, enchantingly charming gameplay that made the original title an award-winning hit. Command your troops through an epic (mis)adventure as you defend exotic lands from dragons, man-eating plants, and ghastly denizens of the underworld -all with flashy new towers, levels, heroes, and more goodies to help you crush your foes to a pulp. (Don't worry, we've still got all the good ol' stuff from the last game, too. It's vintage now.) <br><br>Kingdom Rush: Frontiers packs in so much content, it's like a fully upgraded artillery blast of mouthwatering, pixelated joy launched right into your smiling little face... and it hurts so good!<h2 class="bb_tag">Key Features</h2><br><ul class="bb_ul"><li> Fantastic Tower Defense game with lots of strategic decisions. Great power-user stuff like Reinforcements, Meteor Strikes, Heroes and more.<br></li><li> Fortify the frontier in exotic news lands - hold the line in deserts, jungles and even the underworld! <br></li><li> Eight new specialized tower upgrades! Slice, sizzle, and stomp your foes with Crossbow Forts, Mighty Templars, Necromancers, and even Earthquake Machines - hey, we told you we were shaking things up. <br></li><li> Over 18 tower abilities! Unleash Death Riders, pestilence clouds, or Assassins that steal and kill your enemies! <br></li><li> Over 40 enemies with unique abilities! Stay on your toes as you fight through desert sandworms, tribal shamans, nomad tribes and underground terrors. <br></li><li> 9 legendary heroes. Choose your champions and train their abilities! Each has unique specialties that fit different play styles! and More to come!<br></li><li> Special units and features on every stage! Watch out for the Black Dragon! <br></li><li> Merciless boss fights! Hey, we told you to get those upgrades... <br></li><li> Upgrade system allows you to min/max your towers towards your preferred strategy. <br></li><li> Hours of gameplay with over 70 achievements! <br></li><li> Classic, Iron, and Heroic game modes to challenge your tactical skills! <br></li><li> Three difficulty modes! Are you up for a real challenge? Go with Hard mode! <br></li><li> Intoxicating charm with a rousing score, full-bodied voice-overs and lovingly illustrated cartoon art! (Complete with cartoon blood, naturally.) <br></li><li> In-game encyclopedia! True warriors know thine enemies... and their towers. Study up! </li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

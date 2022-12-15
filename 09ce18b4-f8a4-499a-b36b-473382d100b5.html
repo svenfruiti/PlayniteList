@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Track and Burn</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('09ce18b4-f8a4-499a-b36b-473382d100b5/c5b66d74-fe11-4b2b-b49f-949b8fef19aa.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="09ce18b4-f8a4-499a-b36b-473382d100b5/ab4e89de-93a3-4d58-9a70-73065301db21.ico"/> Track and Burn</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="09ce18b4-f8a4-499a-b36b-473382d100b5/e88ca4f6-8271-419a-8633-3dc5e747fc8c.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Spielzeit</TD>
+								<TD>Nicht gespielt</TD>
+							</TR>
+							<TR>
+								<TD>Letzte Aktivität</TD>
+								<TD><a href="#quicklink-Nie">Nie</a> </TD>
+							</TR>
+							<TR>
+								<TD>Hinzugefügt</TD>
+								<TD><a href="#quicklink-25.06.2022">25.06.2022</a> 13:12:26</TD>
+							</TR>
+							<TR>
+								<TD>Modifiziert</TD>
+								<TD><a href="#quicklink-10.11.2022">10.11.2022</a> 13:46:45</TD>
+							</TR>
+							<TR>
+								<TD>Fertigstellungsstatus</TD>
+								<TD><a href="default_completionstatus_aufsteigend_name_aufsteigend.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Bibliothek</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Quelle</TD>
+								<TD><a href="default_source_aufsteigend_name_aufsteigend.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plattform</TD>
+								<TD><a href="default_platform_aufsteigend_name_aufsteigend.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Veröffentlichungsdatum</TD>
+								<TD><a href="#quicklink-02.11.2021">02.11.2021</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Bewertungen</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_absteigend_name_aufsteigend.html#quicklink-67">67</a></TD>
+							</TR>
+							<TR>
+								<TD>Kritiker Punkte</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Benutzerwertung</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Casual">Casual</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Indie">Indie</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Racing">Racing</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Entwickler</TD>
+								<TD><a href="#quicklink-Tayasui">Tayasui</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Verleger</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-Tayasui">Tayasui</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Eigenschaft</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/1668170" target="_blank">Communityhub</a><br/><a href="https://steamcommunity.com/app/1668170/discussions/" target="_blank">Diskussionen</a><br/><a href="https://steamcommunity.com/app/1668170/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=1668170" target="_blank">Neuigkeiten</a><br/><a href="https://store.steampowered.com/app/1668170" target="_blank">Shopseite</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1668170" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Beschreibung</H3>
+				</div>
+				<div class="description">
+					Track &amp; Burn is a stylish free-to-play racing game, combining the best of old school racing with custom track-building. Zip through urban cityscapes. Design your own tracks. Compete with the community. And burn some rubber!<br><br><strong>WISHLIST TRACK &amp; BURN</strong><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1668170/extras/Wishlist_update.gif?t=1639127594" /><br><br><strong>JOIN OUR COMMUNITY</strong><br>Hi Track &amp; Burn early adopters! 🏁 Thanks for dropping by. <br>Wanna be on the inside track? Follow us on social media to hang out with the community, chat with us, and be the first to hear about new updates &amp; events. <br><br>Follow us on Twitter @tranckandburn<br>Instagram @tracknburn<br><br>Wishlist on Steam to get notified when the game goes live!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1668170/extras/aboutthisgame.gif?t=1639127594" /><br><br>Track &amp; Burn is a stylish free-to-play racing game, set in the 70s. The spiritual successor to legendary titles like ‘Driver’ &amp; ‘Trackmania’, it combines the best of old school racing with custom track-building. Built by a veteran Parisian team with a passion for motorsports &amp; effortlessly elegant French design.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1668170/extras/race.png?t=1639127594" /><br><br>🚘 Burn some rubber &amp; make some noise! <br><br>Race fun-to-handle muscle cars through chic cityscapes. Flex your driving skills. And rip up the road. Realistic speeds, no coins, no boosts, no minimap &amp; no fake drift. In Track &amp; Burn, it’s all about the car, the road, and your true racing grit. <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1668170/extras/build-timlapse2.gif?t=1639127594" /><br><br>🔧 Become the ultimate track-builder!<br>Build and share your own custom tracks - with a variety of track pieces &amp; combinations to choose from. Challenge the community with lethal loops &amp; breakneck bends. Try out user-generated tracks. Embrace your inner architect with quirky designs. Or just build a straight line. We don’t judge ;)<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1668170/extras/compete.png?t=1639127594" /><br><br>🏁 Compete with friends. Or take on the world. Show the Track &amp; Burn community what you’ve got via racing ghosts, world leaderboards, special Mini Cups &amp; more.<br><br><br>Note: Only selected competitive features will be available in the game during Early Access.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1668170/extras/whatsnext.png?t=1639127594" /><br><br><strong>FREE UPDATES</strong><br><br>Around the launch of Early Access, Track &amp; Burn will include one racing level, track-building features, one track-building environment, the ability to race against ghosts &amp; more.<br>But we plan on bringing FREE CONTENT DROPS &amp; UPDATES to Track &amp; Burn across Early Access and beyond, including:<br><br><ul class="bb_ul"><li>New tracks<br></li><li>New environments<br></li><li>New paint jobs &amp; stickers<br></li><li>New challenges</li></ul><br>Keep an eye on our social media channels for updates &amp; early sneak peeks.<br><br><strong>PREMIUM CUSTOMISATION &amp; EXTRAS</strong><br><br>The Early Access version of Track &amp; Burn will not offer any paid extras. But when the game is fully launched on Steam, we hope to offer a variety of epic premium customisation options like special paint jobs, bonus environments &amp; even more set pieces, in addition to all the great stuff that’s freely available in the base game.<br><br>These will be paid add-ons. But don’t worry - we hate ‘pay-to-win’ as much as you do. Track &amp; Burn’s premium extras will always be just that...extras! No game advantage. No getting trounced by the player with the deepest pockets. Just some good old fashioned *goodies*, for anyone who wants them 👌<br><br><strong>&amp; MORE</strong><br><br>We’ve got big plans for Track &amp; Burn. We hope to bring the game to more platforms in the future, reaching an even wider community of motorsports fans.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1668170/extras/the_team.png?t=1639127594" /><br><br>Tayasui is a Parisian development studio with a passion for simple, elegant design. With over 10 years of experience in mobile apps, the team is incredibly excited to be launching Track &amp; Burn as their first title for the PC &amp; Mac market.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

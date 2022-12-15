@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>TyranoBuilder Visual Novel Studio</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('8ec06547-704c-44f1-9f84-894488156bf9/8d406bcc-aa67-46a9-8592-231f30f5dc3e.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="8ec06547-704c-44f1-9f84-894488156bf9/f6f06ae0-664d-494b-91ed-8c70aba8e49d.ico"/> TyranoBuilder Visual Novel Studio</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="8ec06547-704c-44f1-9f84-894488156bf9/a60bef83-1906-45f3-96e1-a7ac4d5d3ae1.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Spielzeit</TD>
+								<TD>12h 20m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Letzte Aktivität</TD>
+								<TD><a href="#quicklink-13.08.2021">13.08.2021</a> 23:28:24</TD>
+							</TR>
+							<TR>
+								<TD>Hinzugefügt</TD>
+								<TD><a href="#quicklink-19.12.2019">19.12.2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modifiziert</TD>
+								<TD><a href="#quicklink-10.11.2022">10.11.2022</a> 13:17:33</TD>
+							</TR>
+							<TR>
+								<TD>Fertigstellungsstatus</TD>
+								<TD><a href="default_completionstatus_aufsteigend_name_aufsteigend.html#quicklink-Gespielt">Gespielt</a></TD>
+							</TR>
+							<TR>
+								<TD>Bibliothek</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Quelle</TD>
+								<TD><a href="default_source_aufsteigend_name_aufsteigend.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plattform</TD>
+								<TD><a href="default_platform_aufsteigend_name_aufsteigend.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Veröffentlichungsdatum</TD>
+								<TD><a href="#quicklink-27.03.2015">27.03.2015</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Bewertungen</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_absteigend_name_aufsteigend.html#quicklink-80">80</a></TD>
+							</TR>
+							<TR>
+								<TD>Kritiker Punkte</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Benutzerwertung</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-🎬 Utilities">🎬 Utilities</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Entwickler</TD>
+								<TD><a href="#quicklink-STRIKEWORKS">STRIKEWORKS</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Verleger</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-Nyu Media">Nyu Media</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Eigenschaft</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/345370" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/345370/discussions/" target="_blank">Discussions</a><br/><a href="https://store.steampowered.com/news/?appids=345370" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/345370" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=345370" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Beschreibung</H3>
+				</div>
+				<div class="description">
+					<i>※ 日本語の案内は英文の下にあります！ ※</i><br><br>Easily and quickly make your own multi-platform visual novels with TyranoBuilder, even if you know nothing about game programming or scripting! <br><br>Bring your creativity to reality with our suite of drag-and-drop tools, plus scripting language for advanced users.<br><br>Games made with TyranoBuilder can be easily exported to Windows, Mac, browsers, or converted* for iOS and Android smart devices, then sold via distributors such as Steam, the Apple AppStore, or GooglePlay!<br><br><i>*Requires free third party software. See the TyranoBuilder Tutorial for details.</i><br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/345370/extras/chibi-chase.png?t=1572373319" ><h2 class="bb_tag">Features:</h2><br><strong>★ Easy &amp; fast to Use! ★</strong><br>No programming knowledge required! Fire up and start creating games immediately with TyranoBuilder’s simple and intuitive drag &amp; drop interface!<br><br><strong>★ Multi-platform! ★</strong><br>Create games on Windows or Mac, and export for Windows, iOS*, Android*, smartphones and tablets, or browsers!<br><img src="https://steamcdn-a.akamaihd.net/steam/apps/345370/extras/platforms.png?t=1572373319" ><br><i>*iOS and Android require conversion using free third party software. See the TyranoBuilder Tutorial for details.</i><br><br><strong>★ Fully featured! ★</strong> <br>Easily add scenes, characters, dialogue, story branches, music, movies and more!<br><br><strong>★ Powerful! Flexible! ★</strong> <br>Customize every aspect of your game with the included TyranoScript scripting language! <br><br><strong>★ Outstanding Value! ★</strong> <br>Create and sell your own visual novels for only $14.99! Requires NO license fees or royalties of any kind!<br><br><strong><i>★★★ BUY NOW &amp; GET CREATING!! :D ★★★</i></strong><h2 class="bb_tag">Praise for TyranoBuilder!</h2><br><i>&quot;Super intuitive! Within minutes I was up and running and already had a scene nearly finished. The ability to basically do everything without ever needing to know any kind of programming is going to make this a smash hit.&quot;</i> - Hardcore Gamer<br><br><i>&quot;This software is amazing, really easy to use.&quot;</i> - Nerd Maldito<br><br><i>&quot;Hands down the fastest way of creating a visual novel with no coding required.&quot;</i> - Rice Digital<br><br><i>&quot;Easier than peeling a banana.&quot;</i> - G-Genius &amp; P4G<br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/345370/extras/chibi-play.png?t=1572373319" ><br><br>++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++<h2 class="bb_tag">このソフトについて</h2><br>プログラミングやスクリプト言語に関する知識がゼロでも、本格的なノベルゲームの制作を可能にするティラノビルダー！<br><br>ドラッグ＆ドロップの直感的な操作で、自分の思い描いた世界をゲームとして実現できる。<br>また、上級ユーザー向けにスクリプト言語での制作にも対応。<br><br>ティラノビルダーで制作されるゲームは簡単にWindows、 MacOS、ブラウザー向けにエクスポートすることができ、iOS やアンドロイド端末向けに移植※出来る。<br><br>さらに、制作したゲームをSteam、Apple AppStore、GooglePlayなどで発売もできる!<br><br><i>※フリーウェアが必要となる。詳しくはティラノビルダーのチュートリアルをご参照下さい。</i><br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/345370/extras/chibi-chase.png?t=1572373319" ><h2 class="bb_tag">特徴：</h2><br><strong>★ 使いやすい！早い！ ★</strong><br>プログラミングに関する知識がゼロでもOK!<br>ティラノビルダーの直観的な操作で直ぐにゲーム制作を開始出来る！<br><br><strong>★ マルチプラットフォーム！ ★</strong><br>WindowsあるいはMacOSでゲームを制作し、Windows、 iOS※、 アンドロイド※、 スマホ、タブレット、ブラウザー用にエクスポート出来る！<br><img src="https://steamcdn-a.akamaihd.net/steam/apps/345370/extras/platforms.png?t=1572373319" ><br><i>※iOSとアンドロイドは無料のフリーウェアによって変換する必要がある。<br>詳しくはティラノビルダーのチュートリアルをご参照下さい。</i><br><br><strong>★ 数多くの強力な機能を搭載! ★</strong><br>シナリオの調整、キャラ表情、テキストのカスタマイズ、分岐、BGM、動画などを対応！<br><br><strong>★ 強力！柔軟なカスタマイズ！ ★</strong><br>ティラノビルダーに含まれるティラノスクリプトによって、<br>制作するゲームのあらゆる要素をカスタマイズできる！<br><br><strong>★ お買い得！！ ★</strong><br>$14.99で自分のノベルゲームの制作と販売が出来る！<br>一度購入すれば、ライセンス費用やロイヤルティ支払は一切不要です！<br><br><strong><i>★★★ 直ぐに購入し、ノベルゲーム制作にチャレンジしよう ★★★</i></strong><h2 class="bb_tag">ティラノビルダーに関するプレスからの引用：</h2><br><i>「めちゃくちゃ使いやすい！初めて起動してから数分後、既にゲーム制作が進んでおり、<br>早くも１シナリオを完成するところだった。何のプログラミングの知識がなくても、何で<br>も出来るので、これは大ヒットになるだろう」</i> - Hardcore Gamer<br><br><i>「このソフトは凄い。本当に使いやすい。」</i> Nerd Maldito<br><br><i>「バナナの皮を剥くより簡単。」</i> G-Genius、P4G<br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/345370/extras/chibi-play.png?t=1572373319" >
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

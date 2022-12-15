@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hearts of Iron IV</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('2dfbf491-9922-45d0-9ced-407f374c44de/5e02daae-8139-48ae-a580-81dbd4b102ec.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="2dfbf491-9922-45d0-9ced-407f374c44de/956b3801-080c-4082-86ae-7cbf86309218.ico"/> Hearts of Iron IV</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="2dfbf491-9922-45d0-9ced-407f374c44de/8d45d93c-c4aa-45d4-bbf1-70e8f8db1553.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Spielzeit</TD>
+								<TD>3h 41m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Letzte Aktivität</TD>
+								<TD><a href="#quicklink-11.05.2021">11.05.2021</a> 0:22:34</TD>
+							</TR>
+							<TR>
+								<TD>Hinzugefügt</TD>
+								<TD><a href="#quicklink-11.05.2021">11.05.2021</a> 15:11:37</TD>
+							</TR>
+							<TR>
+								<TD>Modifiziert</TD>
+								<TD><a href="#quicklink-10.11.2022">10.11.2022</a> 14:16:19</TD>
+							</TR>
+							<TR>
+								<TD>Fertigstellungsstatus</TD>
+								<TD><a href="default_completionstatus_aufsteigend_name_aufsteigend.html#quicklink-Verlassen">Verlassen</a></TD>
+							</TR>
+							<TR>
+								<TD>Bibliothek</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Quelle</TD>
+								<TD><a href="default_source_aufsteigend_name_aufsteigend.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plattform</TD>
+								<TD><a href="default_platform_aufsteigend_name_aufsteigend.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Veröffentlichungsdatum</TD>
+								<TD><a href="#quicklink-06.06.2016">06.06.2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Bewertungen</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_absteigend_name_aufsteigend.html#quicklink-90">90</a></TD>
+							</TR>
+							<TR>
+								<TD>Kritiker Punkte</TD>
+								<TD><a href="#quicklink-83">83</a></TD>
+							</TR>
+							<TR>
+								<TD>Benutzerwertung</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Entwickler</TD>
+								<TD><a href="#quicklink-Paradox Development Studio">Paradox Development Studio</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Verleger</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-Paradox Interactive">Paradox Interactive</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Eigenschaft</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Co-op">Co-op</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Single Player">Single Player</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Steam Karten">Steam Karten</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Workshop">Workshop</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-🦢 Cross Platform">🦢 Cross Platform</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/394360" target="_blank">Communityhub</a><br/><a href="https://steamcommunity.com/app/394360/discussions/" target="_blank">Diskussionen</a><br/><a href="https://steamcommunity.com/app/394360/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=394360" target="_blank">Neuigkeiten</a><br/><a href="https://store.steampowered.com/app/394360" target="_blank">Shopseite</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=394360" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/394360/achievements" target="_blank">Errungenschaften</a><br/><a href="https://steamcommunity.com/app/394360/workshop/" target="_blank">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Beschreibung</H3>
+				</div>
+				<div class="description">
+					<h1>Featured DLC</h1><p><a href="https://store.steampowered.com/app/1348660/Hearts_of_Iron_IV_Battle_for_the_Bosporus/" target="_blank" rel="noreferrer"  id="dynamiclink_0" >https://store.steampowered.com/app/1348660/Hearts_of_Iron_IV_Battle_for_the_Bosporus/</a></p><br><h1>Game Book</h1><p>This is how you access your game book content. <br><br><ul class="bb_ul"><li>The player must connect his/her Paradox account and Steam account.<br></li><li>Go to <a href="https://steamcommunity.com/linkfilter/?url=http://accounts.paradoxplaza.com" target="_blank" rel="noopener"  >accounts.paradoxplaza.com</a><br></li><li>Log in<br></li><li>Click Settings<br></li><li>Click  ”Connect” your Steam account and follow the instructions.<br></li><li>When the player logs into his/her Paradox account in the mobile app – the content is unlocked.</li></ul><br>direct link to the mobile applications: <br><a href="https://itunes.apple.com/us/app/pages/id1064064762?mt=8" target="_blank" rel="noreferrer"  >https://itunes.apple.com/us/app/pages/id1064064762?mt=8</a><br><a href="https://steamcommunity.com/linkfilter/?url=https://play.google.com/store/apps/details?id=com.pdx.hoi4" target="_blank" rel="noopener"  >https://play.google.com/store/apps/details?id=com.pdx.hoi4</a></p><br><h1>About the Game</h1><strong>Victory is at your fingertips!</strong> Your ability to lead your nation is your supreme weapon, the strategy game Hearts of Iron IV lets you take command of any nation in World War II; the most engaging conflict in world history. <br><br>From the heart of the battlefield to the command center, you will guide your nation to glory and wage war, negotiate or invade. You hold the power to tip the very balance of WWII. It is time to show your ability as the greatest military leader in the world. Will you relive or change history? Will you change the fate of the world by achieving victory at all costs?<br><br><strong>Main Features:</strong><h2 class="bb_tag">Total strategic war: </h2>War is not only won on land, sea and in the air. It’s also achieved in the hearts and minds of men and women.<h2 class="bb_tag">Authentic real-time war simulation: </h2>Let the greatest commanders of WW2 fight your war with the tools of the time; tanks, planes, ships, guns and newly discovered weapons of mass destruction.<h2 class="bb_tag">Assume control of any nation:</h2>Choose from the greatest powers striving for victory, or the small nations trying to weather the storm.<br><br>Turn the world into your battlefield: Experience the full WWII timespan in a topographical map complete with seasons, weather and terrain. Snow, mud, storms can be both your strong ally and a ruthless enemy.<h2 class="bb_tag">Negotiate or force your will:</h2>Experience the advanced politics and diplomacy systems, form factions, engage in trade for resources and appoint ministers to your party.<h2 class="bb_tag">Intense Online Combat: </h2>Battle in both competitive and cooperative multiplayer for up to 32 players. Featuring cross-platform multiplayer.<h2 class="bb_tag">Give your nation a unique edge: </h2>Experience the flexible technology system, where all major powers get their own unique identity. Develop detailed historic tanks and planes through research and army experience.<br><br><strong>Everyone will receive:</strong><h2 class="bb_tag">Poland: United and Ready:</h2>A Free DLC adds a unique focus tree for Poland, new 3d models for tanks and planes, 2d assets, and extra leader portraits for the ultimate in historical accuracy.<h2 class="bb_tag">Forum Avatar </h2>Forum avatar for the Paradox forum.<h2 class="bb_tag">Wallpaper</h2>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

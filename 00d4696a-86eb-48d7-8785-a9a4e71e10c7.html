@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Candy Crush Saga</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('00d4696a-86eb-48d7-8785-a9a4e71e10c7/4f1ef91f-2724-4777-8551-426466e7a0f0.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="00d4696a-86eb-48d7-8785-a9a4e71e10c7/3ad1d04a-5314-42ee-a011-aebb0e87cce9"/> Candy Crush Saga</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="00d4696a-86eb-48d7-8785-a9a4e71e10c7/785784b6-d3ea-40a1-b60b-8f9a2a0cd6a1.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Spielzeit</TD>
+								<TD>Nicht gespielt</TD>
+							</TR>
+							<TR>
+								<TD>Letzte Aktivität</TD>
+								<TD><a href="#quicklink-Nie">Nie</a> </TD>
+							</TR>
+							<TR>
+								<TD>Hinzugefügt</TD>
+								<TD><a href="#quicklink-30.11.2021">30.11.2021</a> 0:55:31</TD>
+							</TR>
+							<TR>
+								<TD>Modifiziert</TD>
+								<TD><a href="#quicklink-10.11.2022">10.11.2022</a> 12:26:39</TD>
+							</TR>
+							<TR>
+								<TD>Fertigstellungsstatus</TD>
+								<TD><a href="default_completionstatus_aufsteigend_name_aufsteigend.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Bibliothek</TD>
+								<TD><a href="#quicklink-Xbox">Xbox</a></TD>
+							</TR>
+							<TR>
+								<TD>Quelle</TD>
+								<TD><a href="default_source_aufsteigend_name_aufsteigend.html#quicklink-Xbox">Xbox</a></TD>
+							</TR>
+							<TR>
+								<TD>Plattform</TD>
+								<TD><a href="default_platform_aufsteigend_name_aufsteigend.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Veröffentlichungsdatum</TD>
+								<TD><a href="#quicklink-13.10.2017">13.10.2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Bewertungen</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_absteigend_name_aufsteigend.html#quicklink-63">63</a></TD>
+							</TR>
+							<TR>
+								<TD>Kritiker Punkte</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Benutzerwertung</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-⚙️ Strategie">⚙️ Strategie</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Arcade">Arcade</a><br/><a href="default%20combobox%20quicklinks_genre_aufsteigend_name_aufsteigend.html#quicklink-Puzzle">Puzzle</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Entwickler</TD>
+								<TD><a href="#quicklink-King Games">King Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Verleger</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_aufsteigend_name_aufsteigend.html#quicklink-king.com">king.com</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Eigenschaft</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Co-op">Co-op</a><br/><a href="default%20combobox%20quicklinks_feature_aufsteigend_name_aufsteigend.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://www.reddit.com/r/candycrush" target="_blank">Reddit</a><br/><a href="https://king.com/game/candycrush" target="_blank">Official Website</a><br/><a href="https://candycrush.fandom.com/wiki/Candy_Crush_Saga" target="_blank">Wikia</a><br/><a href="https://en.wikipedia.org/wiki/Candy_Crush_Saga" target="_blank">Wikipedia</a><br/><a href="https://twitter.com/CandyCrushSaga" target="_blank">Twitter</a><br/><a href="https://apps.apple.com/app/id553834731" target="_blank">iPhone</a><br/><a href="https://play.google.com/store/apps/details?id=com.king.candycrushsaga" target="_blank">Android</a><br/><a href="https://www.twitch.tv/directory/game/Candy%20Crush%20Saga/videos/all" target="_blank">Twitch</a><br/><a href="https://www.youtube.com/user/CandyCrushOfficial" target="_blank">Youtube</a><br/><a href="https://www.facebook.com/candycrushsaga" target="_blank">Facebook</a><br/><a href="https://www.instagram.com/candycrushsaga?hl=en" target="_blank">Instagram</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Beschreibung</H3>
+				</div>
+				<div class="description">
+					Candy Crush Saga is a match-three puzzle video game released by King on April 12, 2012 for Facebook, on November 14, 2012 for iOS, on December 14, 2012 for Android, on December 11, 2014 for Fire OS, on September 6, 2012 for Windows Phone, and July 29, 2015, for Windows 10 and Tizen. It is a variation on their browser game Candy Crush.
+<br>
+<br>Different "special candies" can be formed by matching a combination of 4 or 5 in a certain formation, such as a "Striped" candy (which clears either an entire row or column), a "Wrapped" candy (which acts like a bomb; clearing the 8 surrounding candies, falling, and exploding one more time), or a "Color Bomb" (which removes all candies with the same color of the one it is matched with). Special Candies can also be matched together, producing varying effects; for example, matching a color bomb with a striped candy turns all of the candies of its color into striped candies, which are immediately detonated.
+<br>
+<br>Other special candies which appear on the boards for free can be purchased from the in-game store, or won from the Candy Crush Booster Wheel. These include Jelly Fish in jelly clearing boards which clear 3 pieces from the board at random, the Coconut Wheel on ingredient dropping boards which changes three candies in a row into striped candies, and Lucky Candy in recipe boards which when matched change to one of the types of pieces the player needs to clear the objective. The Booster Wheel also offers a chance to win a jackpot of all boosters in one spin.
+<br>
+<br>Other pieces known as Blockers appear on boards to add to the challenge: Icing (also called Meringues) cannot be moved and can only be removed by matching next to it, Liquorice Locks cage of single pieces of candy to prevent them from use, Chocolate pieces will multiply if not cleared, Liquorice Swirls cannot be removed with Special Candies, Candy Bombs will explode and end the level early if they are not cleared, Multilayered Icing requires multiple matches to remove, Chocolate Spawners will produce Chocolate pieces at all times, Marmalade guards Special Candies from use, Cake Bombs can clear the entire board once cleared, and Toffee Tornadoes move on the board destroying pieces and shattering the tile beneath them to prevent use for one turn. Other pieces also appear on levels such as Chameleon Candies which switch colors every turn, Mystery Candies which randomly turn into a Special Candy or a Blocker, and Extra Time Candies on time limit levels.
+<br>
+<br>The player can also purchase various Boosters to attempt to win levels more easily or extend play after a lost level; Lollipop Hammer clears a single piece from the board, Extra Moves can be purchased if running out of moves at the end of a game, Free Switch allows players to switch two pieces that do not possibly match, Sweet Teeth to clear out Blockers and Jelly, Bomb Coolers to add onto Candy Bomb timers if the timer runs out, and the Bubblegum Troll to stop Chocolate Spawners from spawning chocolate from its sides. The Dreamworld levels have their own special boosters: the Restore Balance booster to reset the Moon Scale for 5 turns and the Moon Struck booster to automatically activate Moon Struck.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
